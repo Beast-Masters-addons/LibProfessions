@@ -1,0 +1,9 @@
+## Interface: 11302
+## Title: LibProfessions
+## Author: datagutten
+## Version: 1.0
+## Notes: Tools to work with profession data
+
+libs\LibStub\LibStub.lua
+LibProfessions.lua
+CurrentProfession.lua
