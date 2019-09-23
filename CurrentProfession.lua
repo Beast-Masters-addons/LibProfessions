@@ -1,14 +1,6 @@
-local profession = LibStub:NewLibrary("CurrentProfessions-1.0", 1)
---local CurrentProfession = LibStub("CurrentProfessions-1.0")
-
 function profession:IdFromLink(link)
     local _, _, id = string.find(link, "item:(%d+)");
     return tonumber(id);
-end
-
---local tradeSkillID, skillLineName, skillLineRank, skillLineMaxRank, skillLineModifier = CurrentProfession:GetInfo()
-function profession:GetInfo()
-    return GetTradeSkillLine();
 end
 
 function profession:ProfessionIs(profession_id)
@@ -20,17 +12,15 @@ function profession:ProfessionIs(profession_id)
     end
 end
 
-function profession:NumRecipes()
-   return GetNumTradeSkills()
-end
-
+--/dump LibStub("CurrentProfessions-1.0"):GetReagents(2)
+--/dump LibStub("CurrentProfessions-1.0"):GetReagents(160962)
 function profession:GetReagents(recipeID)
     local reagents = {}
-    local numReagents = GetTradeSkillNumReagents(recipeID);
+    local numReagents = self:NumReagents(recipeID);
     if numReagents > 0 then
         for reagent_Index = 1, numReagents, 1 do
-            local reagentLink = GetTradeSkillReagentItemLink(recipeID, reagent_Index);
-            local reagentName, reagentTexture, reagentCount, playerReagentCount = GetTradeSkillReagentInfo(recipeID, reagent_Index);
+            local reagentLink = self:GetReagentItemLink(recipeID, reagent_Index);
+            local reagentName, reagentTexture, reagentCount, playerReagentCount = self:GetReagentInfo(recipeID, reagent_Index);
             if reagentLink then
                 local reagentItemID = self:IdFromLink(reagentLink)
                 reagents[reagent_Index] = {reagentItemID, reagentName, reagentTexture, reagentCount, playerReagentCount, reagentLink}
@@ -40,20 +30,28 @@ function profession:GetReagents(recipeID)
     end
 end
 
+--/dump LibStub("CurrentProfessions-1.0"):GetRecipes()
 function profession:GetRecipes()
     local recipes = {}
-    for recipeID = 1, self:NumRecipes(), 1 do
+    if WoWClassic then
+        for recipeID = 1, self:NumRecipes(), 1 do
 
-        local skillName, skillType, numAvailable, isExpanded = GetTradeSkillInfo(recipeID);
-        if skillType == "header" or skillType == nil then -- skip header by increasing recipeID
-            recipeID = recipeID +1
-            skillName, skillType, numAvailable, isExpanded = GetTradeSkillInfo(recipeID);
+            local skillName, skillType, numAvailable, isExpanded = GetTradeSkillInfo(recipeID);
+            if skillType == "header" or skillType == nil then -- skip header by increasing recipeID
+                recipeID = recipeID +1
+                skillName, skillType, numAvailable, isExpanded = GetTradeSkillInfo(recipeID);
+            end
+
+            recipes[recipeID] = {}
+            recipes[recipeID]['name'] = skillName
+            recipes[recipeID]['difficulty'] = skillType
+            recipes[recipeID]['numAvailable'] = numAvailable
         end
-
-        recipes[recipeID] = {skillName, skillType, numAvailable, isExpanded}
-        recipes[recipeID]['name'] = skillName
-        recipes[recipeID]['difficulty'] = skillType
-        recipes[recipeID]['available'] = numAvailable
+    else
+        for _, recipeID in pairs(C_TradeSkillUI.GetAllRecipeIDs()) do
+            recipes[recipeID] = {}
+            recipes[recipeID] = C_TradeSkillUI.GetRecipeInfo(recipeID)
+        end
     end
     return recipes
 end

@@ -1,9 +1,10 @@
 ## Interface: 11302
-## Title: LibProfessions
+## Title: Lib: Professions
 ## Author: datagutten
 ## Version: 0.1
 ## Notes: Tools to work with profession data
 
 libs\LibStub\LibStub.lua
 LibProfessions.lua
+ProfessionApi.lua
 CurrentProfession.lua

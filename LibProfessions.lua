@@ -3,9 +3,8 @@
 --- Created by Anders.
 --- DateTime: 02.09.2019 19.16
 ---
-local WoWClassic = select(4, GetBuildInfo()) < 20000
-
-local professions = LibStub:NewLibrary("LibProfessions-1.0", 1)
+WoWClassic = select(4, GetBuildInfo()) < 20000
+profession = LibStub:NewLibrary("LibProfessions-1.0", 1)
 --/dump LibStub("LibProfessions-1.0"):profession_id("Leatherworking")
 --local addonName, professions = ...
 
@@ -52,11 +51,11 @@ local rank_max = {[75] = "Apprentice",
                   [225] = "Expert",
                   [300] = "Artisan"}
 
-function professions:icon(profession)
+function profession:icon(profession)
     return icons[profession][1]
 end
 
-function professions:profession_id(profession_name, rank)
+function profession:profession_id(profession_name, rank)
     if rank == nil then
        rank = 1
     end
@@ -75,7 +74,7 @@ function professions:profession_id(profession_name, rank)
     end
 end
 
-function professions:profession_name()
+function profession:profession_name()
     --GetSpellInfo
 end
 
@@ -83,28 +82,35 @@ end
 
 
 --/dump LibStub("LibProfessions-1.0"):GetAllSkills()
-function professions:GetAllSkills(header_filter)
+function profession:GetAllSkills(header_filter)
     local numSkills = GetNumSkillLines();
     local skills = {}
     local header_name = ''
     local i = 1
-    for skillIndex=1,  numSkills, 1 do
-        local skillName, header, isExpanded, skillRank, numTempPoints, skillModifier, skillMaxRank, isAbandonable, stepCost, rankCost, minLevel, skillCostType = GetSkillLineInfo(skillIndex);
-        --print(skillName, header, skillRank)
-        if ( header ) then
-            header_name = skillName
-        else
-            local skill_info = {skillName, header, isExpanded, skillRank, numTempPoints, skillModifier, skillMaxRank,
-                          isAbandonable, stepCost, rankCost, minLevel, skillCostType, rank_max[skillMaxRank], header_name}
-            -- print('Rank line 99:', skillRank)
-            if header_filter ~= nil and header_filter == header_name then
-                --skills[i] = {skillName, skillRank, skillMaxRank, rank_max[skillMaxRank], header, skillModifier}
-                skills[i] = skill_info
-                i = i + 1
-            elseif header_filter == nil then
-                skills[skillName] = skill_info
+    if WoWClassic then
+        for skillIndex=1,  numSkills, 1 do
+            local skillName, header, isExpanded, skillRank, numTempPoints, skillModifier, skillMaxRank, isAbandonable, stepCost, rankCost, minLevel, skillCostType = GetSkillLineInfo(skillIndex);
+            --print(skillName, header, skillRank)
+            if ( header ) then
+                header_name = skillName
+            else
+                local skill_info = {skillName, header, isExpanded, skillRank, numTempPoints, skillModifier, skillMaxRank,
+                                    isAbandonable, stepCost, rankCost, minLevel, skillCostType, rank_max[skillMaxRank], header_name}
+                -- print('Rank line 99:', skillRank)
+                if header_filter ~= nil and header_filter == header_name then
+                    --skills[i] = {skillName, skillRank, skillMaxRank, rank_max[skillMaxRank], header, skillModifier}
+                    skills[i] = skill_info
+                    i = i + 1
+                elseif header_filter == nil then
+                    skills[skillName] = skill_info
+                end
             end
         end
+    else
+        for id, skillLineID in pairs(C_TradeSkillUI.GetAllProfessionTradeSkillLines()) do
+            local skillLineDisplayName, skillLineRank, skillLineMaxRank, skillLineModifier, parentSkillLineID = C_TradeSkillUI.GetTradeSkillLineInfoByID(skillLineID)
+        end
+
     end
 
     return skills
@@ -113,18 +119,18 @@ end
 
 --/dump LibStub("LibProfessions-1.0"):GetSkill("Leatherworking")
 --/dump LibStub("LibProfessions-1.0"):GetSkill("Cooking")
-function professions:GetSkill(profession)
+function profession:GetSkill(profession)
     local skills = self:GetAllSkills()
     return skills[profession]
 end
 
 
 --/dump LibStub("LibProfessions-1.0"):GetProfessions()
-function professions:GetProfessions()
+function profession:GetProfessions()
     return self:GetAllSkills("Professions")
 end
 
-function professions:GetProfessionInfo(index)
+function profession:GetProfessionInfo(index)
     local profs = self:GetProfessions()
     local skillName, header, isExpanded, skillRank, numTempPoints, skillModifier, skillMaxRank, isAbandonable, stepCost, rankCost, minLevel, skillCostType, rank_name, header_name = profs[index]
     local icon = self:icon(skillName)
