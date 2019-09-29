@@ -48,6 +48,7 @@ function profession:GetRecipes()
             recipes[recipeID]['name'] = skillName
             recipes[recipeID]['difficulty'] = skillType
             recipes[recipeID]['numAvailable'] = numAvailable
+            recipes[recipeID]['link'] = GetTradeSkillItemLink(recipeID)
         end
     else
         for _, recipeID in pairs(C_TradeSkillUI.GetAllRecipeIDs()) do
