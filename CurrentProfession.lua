@@ -36,6 +36,9 @@ end
 function profession:GetRecipes()
     local recipes = {}
     if WoWClassic then
+        --@debug@
+        print(string.format('Found %d recipes for %s', self:NumRecipes(), self:GetInfo()))
+        --@end-debug@
         for recipeID = 1, self:NumRecipes(), 1 do
 
             local skillName, skillType, numAvailable, isExpanded = GetTradeSkillInfo(recipeID);
