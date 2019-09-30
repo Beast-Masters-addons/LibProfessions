@@ -12,8 +12,8 @@ function profession:ProfessionIs(profession_id)
     end
 end
 
---/dump LibStub("CurrentProfessions-1.0"):GetReagents(2)
---/dump LibStub("CurrentProfessions-1.0"):GetReagents(160962)
+--/dump LibStub("LibProfessions-1.0"):GetReagents(2)
+--/dump LibStub("LibProfessions-1.0"):GetReagents(160962)
 function profession:GetReagents(recipeID)
     local reagents = {}
     local numReagents = self:NumReagents(recipeID);
@@ -32,7 +32,7 @@ function profession:GetReagents(recipeID)
     end
 end
 
---/dump LibStub("CurrentProfessions-1.0"):GetRecipes()
+--/dump LibStub("LibProfessions-1.0"):GetRecipes()
 function profession:GetRecipes()
     local recipes = {}
     if WoWClassic then
