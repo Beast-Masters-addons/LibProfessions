@@ -26,6 +26,17 @@ function profession:GetInfo()
     end
 end
 
+--/dump LibStub("LibProfessions-1.0"):GetName()
+function profession:GetName()
+    local name
+    if WoWClassic then
+        name = GetTradeSkillLine()
+    else
+        _, _, _, _, _, _, name = C_TradeSkillUI.GetTradeSkillLine()
+    end
+    return name
+end
+
 function profession:NumRecipes()
     return GetNumTradeSkills()
 end

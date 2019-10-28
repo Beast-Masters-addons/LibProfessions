@@ -3,9 +3,10 @@ function profession:IdFromLink(link)
     return tonumber(id);
 end
 
-function profession:ProfessionIs(profession_id)
-    local tradeSkillID = self:GetInfo()
-    if tradeSkillID ~= profession_id then
+--/dump LibStub("LibProfessions-1.0"):ProfessionIs("Cooking")
+function profession:ProfessionIs(profession_name)
+    local current_name = self:GetName()
+    if current_name ~= profession_name then
         return false
     else
         return true
@@ -76,4 +77,15 @@ function profession:DifficultyToNum(difficulty)
         ["grey"]	= 1,
     }
     return difficulties[difficulty]
+end
+
+function profession:DifficultyColor(difficulty)
+    local TradeSkillTypeColor = {}
+    TradeSkillTypeColor["optimal"]	= { r = 1.00, g = 0.50, b = 0.25, font = "GameFontNormalLeftOrange" };
+    TradeSkillTypeColor["medium"]	= { r = 1.00, g = 1.00, b = 0.00, font = "GameFontNormalLeftYellow" };
+    TradeSkillTypeColor["easy"]		= { r = 0.25, g = 0.75, b = 0.25, font = "GameFontNormalLeftLightGreen" };
+    TradeSkillTypeColor["trivial"]	= { r = 0.50, g = 0.50, b = 0.50, font = "GameFontNormalLeftGrey" };
+    TradeSkillTypeColor["header"]	= { r = 1.00, g = 0.82, b = 0,    font = "GameFontNormalLeft" };
+
+    return TradeSkillTypeColor[difficulty]
 end
