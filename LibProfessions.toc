@@ -7,7 +7,7 @@
 
 ## Title: Lib: Professions
 ## Author: datagutten
-## Version: 0.2
+## Version: 0.3
 ## Notes: Tools to work with profession data
 
 libs\LibStub\LibStub.lua
