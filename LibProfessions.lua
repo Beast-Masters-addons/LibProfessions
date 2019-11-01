@@ -4,7 +4,12 @@
 --- DateTime: 02.09.2019 19.16
 ---
 WoWClassic = select(4, GetBuildInfo()) < 20000
+local _, profession = ...
 profession = LibStub:NewLibrary("LibProfessions-1.0", 1)
+if not profession then
+    return	-- already loaded and no upgrade necessary
+end
+
 --/dump LibStub("LibProfessions-1.0"):profession_id("Leatherworking")
 --local addonName, professions = ...
 
@@ -51,8 +56,8 @@ local rank_max = {[75] = "Apprentice",
                   [225] = "Expert",
                   [300] = "Artisan"}
 
-function profession:icon(profession)
-    return icons[profession][1]
+function profession:icon(profession_name)
+    return icons[profession_name][1]
 end
 
 function profession:profession_id(profession_name, rank)

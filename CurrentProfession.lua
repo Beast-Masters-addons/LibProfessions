@@ -1,3 +1,8 @@
+local _, profession = ...
+if not profession then
+    return	-- already loaded and no upgrade necessary
+end
+
 function profession:IdFromLink(link)
     local _, _, id = string.find(link, "item:(%d+)");
     return tonumber(id);

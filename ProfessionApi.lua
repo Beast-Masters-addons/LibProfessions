@@ -1,8 +1,13 @@
 --A library to make similar profession API calls for classic and BfA
 --local profession = LibStub:NewLibrary("LibProfession-1.0", 1)
 
+
+local _, profession = ...
+if not profession then
+    return	-- already loaded and no upgrade necessary
+end
+
 -- defined in LibProfessions.lua
-local profession = profession
 local WoWClassic = WoWClassic
 
 --local WoWClassic = select(4, GetBuildInfo()) < 20000
