@@ -94,14 +94,16 @@ function profession:GetAllSkills(header_filter)
     local i = 1
     if WoWClassic then
         for skillIndex=1,  numSkills, 1 do
-            local skillName, header, isExpanded, skillRank, numTempPoints, skillModifier, skillMaxRank, isAbandonable, stepCost, rankCost, minLevel, skillCostType = GetSkillLineInfo(skillIndex);
+            local skillName, header, isExpanded, skillRank, numTempPoints, skillModifier, skillMaxRank,
+                  isAbandonable, stepCost, rankCost, minLevel, skillCostType = GetSkillLineInfo(skillIndex);
             --print(skillName, header, skillRank)
             if ( header ) then
                 header_name = skillName
             else
-                local skill_info = {skillName, header, isExpanded, skillRank, numTempPoints, skillModifier, skillMaxRank,
-                                    isAbandonable, stepCost, rankCost, minLevel, skillCostType, rank_max[skillMaxRank], header_name}
-                -- print('Rank line 99:', skillRank)
+                local skill_info = {skillName, header, isExpanded, skillRank, numTempPoints, skillModifier,
+                                    skillMaxRank, isAbandonable, stepCost, rankCost, minLevel, skillCostType,
+                                    rank_max[skillMaxRank], header_name}
+
                 if header_filter ~= nil and header_filter == header_name then
                     --skills[i] = {skillName, skillRank, skillMaxRank, rank_max[skillMaxRank], header, skillModifier}
                     skills[i] = skill_info
@@ -124,9 +126,9 @@ end
 
 --/dump LibStub("LibProfessions-1.0"):GetSkill("Leatherworking")
 --/dump LibStub("LibProfessions-1.0"):GetSkill("Cooking")
-function profession:GetSkill(profession)
+function profession:GetSkill(profession_name)
     local skills = self:GetAllSkills()
-    return skills[profession]
+    return skills[profession_name]
 end
 
 
