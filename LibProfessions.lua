@@ -127,14 +127,32 @@ end
 --/dump LibStub("LibProfessions-1.0"):GetSkill("Leatherworking")
 --/dump LibStub("LibProfessions-1.0"):GetSkill("Cooking")
 function profession:GetSkill(profession_name)
-    local skills = self:GetAllSkills()
+    local skills = self:GetProfessions()
     return skills[profession_name]
 end
 
 
 --/dump LibStub("LibProfessions-1.0"):GetProfessions()
 function profession:GetProfessions()
-    return self:GetAllSkills("Professions")
+    local skills = {}
+    if WoWClassic then
+        local profession_skills =  self:GetAllSkills("Professions")
+        --local profession_skills =  self:GetAllSkills("Secondary Skills")
+        local name
+        for _, skill_info in ipairs(profession_skills) do
+            name = skill_info[1]
+            skills[name] = {name = name, skill = skill_info[4], max_skill = skill_info[7], modifier = skill_info[5]}
+        end
+    else
+        local prof1, prof2, arch, fish, cook = GetProfessions();
+        for _, index in ipairs({prof1, prof2, arch, fish, cook}) do
+            local name, texture, rank, maxRank, numSpells, spelloffset, skillLine, rankModifier, specializationIndex,
+            specializationOffset, skillLineName = GetProfessionInfo(index);
+            skills[name] = {name = name, skill = rank, max_skill = maxRank,
+                            modifier = rankModifier, specialization = skillLineName}
+        end
+    end
+    return skills
 end
 
 function profession:GetProfessionInfo(index)
