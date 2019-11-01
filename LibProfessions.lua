@@ -87,11 +87,14 @@ end
 
 --/dump LibStub("LibProfessions-1.0"):GetAllSkills()
 function profession:GetAllSkills(header_filter)
-    local numSkills = GetNumSkillLines();
     local skills = {}
     local header_name = ''
     local i = 1
-    if WoWClassic then
+    -- BfA has no skills, only professions
+    if not WoWClassic then
+        return
+    else
+        local numSkills = GetNumSkillLines();
         for skillIndex=1,  numSkills, 1 do
             local skillName, header, isExpanded, skillRank, numTempPoints, skillModifier, skillMaxRank,
                   isAbandonable, stepCost, rankCost, minLevel, skillCostType = GetSkillLineInfo(skillIndex);
@@ -112,13 +115,7 @@ function profession:GetAllSkills(header_filter)
                 end
             end
         end
-    else
-        for id, skillLineID in pairs(C_TradeSkillUI.GetAllProfessionTradeSkillLines()) do
-            local skillLineDisplayName, skillLineRank, skillLineMaxRank, skillLineModifier, parentSkillLineID = C_TradeSkillUI.GetTradeSkillLineInfoByID(skillLineID)
-        end
-
     end
-
     return skills
 end
 
