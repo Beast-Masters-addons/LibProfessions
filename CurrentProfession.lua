@@ -1,4 +1,5 @@
-local _, profession = ...
+local profession = LibStub:NewLibrary("LibCurrentProfession-1.0", 1)
+local api = LibStub("LibProfessionAPI-1.0")
 if not profession then
     return	-- already loaded and no upgrade necessary
 end
@@ -8,9 +9,9 @@ function profession:IdFromLink(link)
     return tonumber(id);
 end
 
---/dump LibStub("LibProfessions-1.0"):ProfessionIs("Cooking")
+--/dump LibStub("LibCurrentProfession-1.0"):ProfessionIs("Cooking")
 function profession:ProfessionIs(profession_name)
-    local current_name = self:GetName()
+    local current_name = api:GetName()
     if current_name ~= profession_name then
         return false
     else
@@ -18,15 +19,15 @@ function profession:ProfessionIs(profession_name)
     end
 end
 
---/dump LibStub("LibProfessions-1.0"):GetReagents(2)
---/dump LibStub("LibProfessions-1.0"):GetReagents(160962)
+--/dump LibStub("LibCurrentProfession-1.0"):GetReagents(2)
+--/dump LibStub("LibCurrentProfession-1.0"):GetReagents(160962)
 function profession:GetReagents(recipeID)
     local reagents = {}
-    local numReagents = self:NumReagents(recipeID);
+    local numReagents = api:NumReagents(recipeID);
     if numReagents > 0 then
         for reagent_Index = 1, numReagents, 1 do
-            local reagentLink = self:GetReagentItemLink(recipeID, reagent_Index);
-            local reagentName, reagentTexture, reagentCount, playerReagentCount = self:GetReagentInfo(recipeID, reagent_Index);
+            local reagentLink = api:GetReagentItemLink(recipeID, reagent_Index);
+            local reagentName, reagentTexture, reagentCount, playerReagentCount = api:GetReagentInfo(recipeID, reagent_Index);
             if reagentLink then
                 local reagentItemID = self:IdFromLink(reagentLink)
                 reagents[reagent_Index] = {["reagentItemID"]=reagentItemID, ["reagentName"]=reagentName,
@@ -38,15 +39,15 @@ function profession:GetReagents(recipeID)
     end
 end
 
---/dump LibStub("LibProfessions-1.0"):GetRecipes()
+--/dump LibStub("LibCurrentProfession-1.0"):GetRecipes()
 function profession:GetRecipes()
     local recipes = {}
     if WoWClassic then
         --@debug@
-        print(string.format('Found %d recipes for %s', self:NumRecipes(), self:GetInfo()))
+        print(string.format('Found %d recipes for %s', api:NumRecipes(), api:GetInfo()))
         --@end-debug@
         --In Classic the recipeID indicates the place of the recipe in the list
-        for recipeID = 1, self:NumRecipes(), 1 do
+        for recipeID = 1, api:NumRecipes(), 1 do
             local skillName, skillType, numAvailable, isExpanded = GetTradeSkillInfo(recipeID);
             if skillType == "header" or skillType == nil then -- skip header by increasing recipeID
                 recipeID = recipeID +1
@@ -69,6 +70,7 @@ function profession:GetRecipes()
     return recipes
 end
 
+--/dump LibStub("LibCurrentProfession-1.0"):DifficultyToNum("medium")
 function profession:DifficultyToNum(difficulty)
     local difficulties = {
         ["optimal"]	= 4,
@@ -84,6 +86,7 @@ function profession:DifficultyToNum(difficulty)
     return difficulties[difficulty]
 end
 
+--/dump LibStub("LibCurrentProfession-1.0"):DifficultyColor("medium")
 function profession:DifficultyColor(difficulty)
     local TradeSkillTypeColor = {}
     TradeSkillTypeColor["optimal"]	= { r = 1.00, g = 0.50, b = 0.25, font = "GameFontNormalLeftOrange" };

@@ -1,8 +1,5 @@
 --A library to make similar profession API calls for classic and BfA
---local profession = LibStub:NewLibrary("LibProfession-1.0", 1)
-
-
-local _, profession = ...
+local profession = LibStub:NewLibrary("LibProfessionAPI-1.0", 1)
 if not profession then
     return	-- already loaded and no upgrade necessary
 end
