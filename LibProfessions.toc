@@ -9,6 +9,7 @@
 ## Author: datagutten
 ## Version: 0.4
 ## Notes: Tools to work with profession data
+## X-Curse-Project-ID: 342783
 
 libs\LibStub\LibStub.lua
 LibProfessions.lua
