@@ -27,7 +27,8 @@ function profession:GetReagents(recipeID)
     if numReagents > 0 then
         for reagent_Index = 1, numReagents, 1 do
             local reagentLink = api:GetReagentItemLink(recipeID, reagent_Index);
-            local reagentName, reagentTexture, reagentCount, playerReagentCount = api:GetReagentInfo(recipeID, reagent_Index);
+            local reagentName, reagentTexture, reagentCount, playerReagentCount =
+            api:GetReagentInfo(recipeID, reagent_Index);
             if reagentLink then
                 local reagentItemID = self:IdFromLink(reagentLink)
                 reagents[reagent_Index] = {["reagentItemID"]=reagentItemID, ["reagentName"]=reagentName,
@@ -48,10 +49,10 @@ function profession:GetRecipes()
         --@end-debug@
         --In Classic the recipeID indicates the place of the recipe in the list
         for recipeID = 1, api:NumRecipes(), 1 do
-            local skillName, skillType, numAvailable, isExpanded = GetTradeSkillInfo(recipeID);
+            local skillName, skillType, numAvailable = GetTradeSkillInfo(recipeID);
             if skillType == "header" or skillType == nil then -- skip header by increasing recipeID
                 recipeID = recipeID +1
-                skillName, skillType, numAvailable, isExpanded = GetTradeSkillInfo(recipeID);
+                skillName, skillType, numAvailable = GetTradeSkillInfo(recipeID);
             end
 
             recipes[recipeID] = {}
