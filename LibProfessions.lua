@@ -4,8 +4,7 @@
 --- DateTime: 02.09.2019 19.16
 ---
 WoWClassic = select(4, GetBuildInfo()) < 20000
-local _, profession = ...
-profession = LibStub:NewLibrary("LibProfessions-1.0", 1)
+local profession = LibStub:NewLibrary("LibProfessions-1.0", 1)
 if not profession then
     return	-- already loaded and no upgrade necessary
 end
@@ -157,7 +156,8 @@ end
 
 function profession:GetProfessionInfo(index)
     local profs = self:GetProfessions()
-    local skillName, header, isExpanded, skillRank, numTempPoints, skillModifier, skillMaxRank, isAbandonable, stepCost, rankCost, minLevel, skillCostType, rank_name, header_name = profs[index]
+    local skillName, header, isExpanded, skillRank, numTempPoints, skillModifier, skillMaxRank, isAbandonable,
+    stepCost, rankCost, minLevel, skillCostType, rank_name, header_name = profs[index]
     local icon = self:icon(skillName)
     local numAbilities = 0 --TODO: Set this to correct value
     print('Rank line 139:', skillRank)
