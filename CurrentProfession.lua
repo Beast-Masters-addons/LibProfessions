@@ -1,4 +1,4 @@
-local profession = LibStub:NewLibrary("LibCurrentProfession-1.0", 1)
+local profession = LibStub:NewLibrary("LibCurrentProfession-1.1", 1)
 local api = LibStub("LibProfessionAPI-1.0")
 if not profession then
     return	-- already loaded and no upgrade necessary
@@ -69,32 +69,4 @@ function profession:GetRecipes()
         end
     end
     return recipes
-end
-
---/dump LibStub("LibCurrentProfession-1.0"):DifficultyToNum("medium")
-function profession:DifficultyToNum(difficulty)
-    local difficulties = {
-        ["optimal"]	= 4,
-        ["orange"]	= 4,
-        ["medium"]	= 3,
-        ["yellow"]	= 3,
-        ["easy"]	= 2,
-        ["green"]	= 2,
-        ["trivial"]	= 1,
-        ["gray"]	= 1,
-        ["grey"]	= 1,
-    }
-    return difficulties[difficulty]
-end
-
---/dump LibStub("LibCurrentProfession-1.0"):DifficultyColor("medium")
-function profession:DifficultyColor(difficulty)
-    local TradeSkillTypeColor = {}
-    TradeSkillTypeColor["optimal"]	= { r = 1.00, g = 0.50, b = 0.25, font = "GameFontNormalLeftOrange" };
-    TradeSkillTypeColor["medium"]	= { r = 1.00, g = 1.00, b = 0.00, font = "GameFontNormalLeftYellow" };
-    TradeSkillTypeColor["easy"]		= { r = 0.25, g = 0.75, b = 0.25, font = "GameFontNormalLeftLightGreen" };
-    TradeSkillTypeColor["trivial"]	= { r = 0.50, g = 0.50, b = 0.50, font = "GameFontNormalLeftGrey" };
-    TradeSkillTypeColor["header"]	= { r = 1.00, g = 0.82, b = 0,    font = "GameFontNormalLeft" };
-
-    return TradeSkillTypeColor[difficulty]
 end
