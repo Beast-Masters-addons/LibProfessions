@@ -7,7 +7,7 @@
 
 ## Title: Lib: Professions
 ## Author: datagutten
-## Version: 0.5
+## Version: @project-version@
 ## Notes: Tools to work with profession data
 ## X-Curse-Project-ID: 342783
 
