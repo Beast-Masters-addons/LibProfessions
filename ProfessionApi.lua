@@ -22,12 +22,20 @@ function api:IsReady()
     end
 end
 
---local tradeSkillID, skillLineName, skillLineRank, skillLineMaxRank, skillLineModifier = compat:GetInfo()
+--- Get info about the current profession
+--- @return string Profession name
+--- @return number Current skill
+--- @return number Maximum skill
+--- @return number Skill modifier (Not classic)
+--- @return number Profession ID (Not classic)
 function api:GetInfo()
     if WoWClassic then
         return GetTradeSkillLine();
     else
-        return C_TradeSkillUI.GetTradeSkillLine()
+        local tradeSkillID, skillLineName, skillLineRank, skillLineMaxRank, skillLineModifier,
+        parentSkillLineID, parentSkillLineName = C_TradeSkillUI.GetTradeSkillLine()
+        return parentSkillLineName or skillLineName, skillLineRank, skillLineMaxRank, skillLineModifier,
+        parentSkillLineID or tradeSkillID
     end
 end
 
