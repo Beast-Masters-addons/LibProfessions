@@ -39,7 +39,7 @@ function api:GetInfo()
     end
 end
 
---/dump LibStub("LibProfessions-1.0"):GetName()
+--/dump LibStub("LibProfessionAPI-1.0"):GetName()
 --- @deprecated Use GetInfo
 function api:GetName()
     return self:GetInfo()
@@ -53,6 +53,9 @@ function api:NumRecipes()
     return GetNumTradeSkills()
 end
 
+--- Get the number of reagents for a recipe
+--- @param recipeID number Recipe ID
+--- @return number Number of reagents
 function api:NumReagents(recipeID)
     if WoWClassic then
         return GetTradeSkillNumReagents(recipeID)
@@ -61,6 +64,10 @@ function api:NumReagents(recipeID)
     end
 end
 
+
+--- Get item link for a reagent
+--- @param recipeID number Recipe ID
+--- @param reagentIndex number Reagent index
 function api:GetReagentItemLink(recipeID, reagentIndex)
     if WoWClassic then
         return GetTradeSkillReagentItemLink(recipeID, reagentIndex);
@@ -69,6 +76,10 @@ function api:GetReagentItemLink(recipeID, reagentIndex)
     end
 end
 
+--/dump LibStub("LibProfessionAPI-1.0"):GetReagentInfo(2,1)
+--- Get information about a reagent
+--- @param recipeID number Recipe ID (BfA) or recipe index (Classic)
+--- @param reagentIndex number Reagent index
 function api:GetReagentInfo(recipeID, reagentIndex)
     if WoWClassic then
         return GetTradeSkillReagentInfo(recipeID, reagentIndex);
