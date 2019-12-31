@@ -1,4 +1,5 @@
 ---A library to get information about the characters professions
+-- luacheck: ignore profession
 _G['LibProfessions'] = {}
 local profession = _G['LibProfessions']
 profession = LibStub:NewLibrary("LibProfessions-1.0", 1)

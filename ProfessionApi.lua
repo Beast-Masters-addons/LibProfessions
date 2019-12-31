@@ -7,7 +7,7 @@ if not profession then
 end
 
 -- defined in LibProfessions.lua
-local WoWClassic = WoWClassic
+local WoWClassic = _G['WoWClassic']
 
 --local WoWClassic = select(4, GetBuildInfo()) < 20000
 

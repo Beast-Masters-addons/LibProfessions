@@ -1,4 +1,5 @@
 ---A library to get information about the current profession
+-- luacheck: ignore profession api
 _G['CurrentProfession'] = {}
 local profession = _G['CurrentProfession']
 profession = LibStub:NewLibrary("LibCurrentProfession-1.1", 1)
