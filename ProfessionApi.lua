@@ -45,7 +45,11 @@ function api:GetName()
     return self:GetInfo()
 end
 
+--- Get the number of recipes learned
+--- This is currently working only in WoW classic
+--- @return number Number of recipes
 function api:NumRecipes()
+	--TODO: Not working in BfA
     return GetNumTradeSkills()
 end
 
