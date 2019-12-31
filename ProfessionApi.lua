@@ -40,14 +40,9 @@ function api:GetInfo()
 end
 
 --/dump LibStub("LibProfessions-1.0"):GetName()
+--- @deprecated Use GetInfo
 function api:GetName()
-    local name
-    if WoWClassic then
-        name = GetTradeSkillLine()
-    else
-        _, _, _, _, _, _, name = C_TradeSkillUI.GetTradeSkillLine()
-    end
-    return name
+    return self:GetInfo()
 end
 
 function api:NumRecipes()
