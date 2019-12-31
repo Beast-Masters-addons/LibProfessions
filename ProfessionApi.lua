@@ -1,8 +1,9 @@
 ---A library to make similar profession API calls for classic and BfA
+-- luacheck: ignore api
 _G['ProfessionAPI'] = {}
-local profession = _G['ProfessionAPI']
-profession = LibStub:NewLibrary("LibProfessionAPI-1.0", 1)
-if not profession then
+local api = _G['ProfessionAPI']
+api = LibStub:NewLibrary("LibProfessionAPI-1.0", 1)
+if not api then
     return	-- already loaded and no upgrade necessary
 end
 
@@ -11,7 +12,7 @@ local WoWClassic = _G['WoWClassic']
 
 --local WoWClassic = select(4, GetBuildInfo()) < 20000
 
-function profession:IsReady()
+function api:IsReady()
     if WoWClassic then --Professions are always ready in classic
         return true
     elseif not C_TradeSkillUI.IsTradeSkillReady() or C_TradeSkillUI.IsDataSourceChanging() then
@@ -22,7 +23,7 @@ function profession:IsReady()
 end
 
 --local tradeSkillID, skillLineName, skillLineRank, skillLineMaxRank, skillLineModifier = compat:GetInfo()
-function profession:GetInfo()
+function api:GetInfo()
     if WoWClassic then
         return GetTradeSkillLine();
     else
@@ -31,7 +32,7 @@ function profession:GetInfo()
 end
 
 --/dump LibStub("LibProfessions-1.0"):GetName()
-function profession:GetName()
+function api:GetName()
     local name
     if WoWClassic then
         name = GetTradeSkillLine()
@@ -41,11 +42,11 @@ function profession:GetName()
     return name
 end
 
-function profession:NumRecipes()
+function api:NumRecipes()
     return GetNumTradeSkills()
 end
 
-function profession:NumReagents(recipeID)
+function api:NumReagents(recipeID)
     if WoWClassic then
         return GetTradeSkillNumReagents(recipeID)
     else
@@ -53,7 +54,7 @@ function profession:NumReagents(recipeID)
     end
 end
 
-function profession:GetReagentItemLink(recipeID, reagentIndex)
+function api:GetReagentItemLink(recipeID, reagentIndex)
     if WoWClassic then
         return GetTradeSkillReagentItemLink(recipeID, reagentIndex);
     else
@@ -61,7 +62,7 @@ function profession:GetReagentItemLink(recipeID, reagentIndex)
     end
 end
 
-function profession:GetReagentInfo(recipeID, reagentIndex)
+function api:GetReagentInfo(recipeID, reagentIndex)
     if WoWClassic then
         return GetTradeSkillReagentInfo(recipeID, reagentIndex);
     else
