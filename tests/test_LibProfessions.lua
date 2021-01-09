@@ -1,7 +1,7 @@
 local lu = require('luaunit')
 
 loadfile('wow_functions.lua')()
-loadfile('../LibProfessions.lua')()
+loadfile('../addon/LibProfessions.lua')()
 
 _G['test'] = {}
 local test = _G['test']
