@@ -96,7 +96,11 @@ end
 
 
 --/dump LibStub("LibProfessions-1.0"):GetAllSkills()
-function lib:GetAllSkills(header_filter)
+function lib:GetAllSkills(header_filters)
+    if type(header_filters) == 'string' then
+        header_filters = {header_filters}
+    end
+
     local skills = {}
     local header_name = ''
     local i = 1
@@ -116,11 +120,14 @@ function lib:GetAllSkills(header_filter)
                                     skillMaxRank, isAbandonable, stepCost, rankCost, minLevel, skillCostType,
                                     rank_max[skillMaxRank], header_name}
 
-                if header_filter ~= nil and header_filter == header_name then
-                    --skills[i] = {skillName, skillRank, skillMaxRank, rank_max[skillMaxRank], header, skillModifier}
-                    skills[i] = skill_info
-                    i = i + 1
-                elseif header_filter == nil then
+                if header_filters ~=nil then
+                    for _, header_filter in ipairs(header_filters) do
+                        if header_filter == header_name then
+                            skills[skillName] = skill_info
+                            i = i + 1
+                        end
+                    end
+                else
                     skills[skillName] = skill_info
                 end
             end
@@ -145,7 +152,7 @@ function lib:GetProfessions()
         local profession_skills =  self:GetAllSkills("Professions")
         --local profession_skills =  self:GetAllSkills("Secondary Skills")
         local name
-        for _, skill_info in ipairs(profession_skills) do
+        for _, skill_info in pairs(profession_skills) do
             name = skill_info[1]
             skills[name] = {name = name, skill = skill_info[4], max_skill = skill_info[7], modifier = skill_info[5]}
         end
