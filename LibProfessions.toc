@@ -13,6 +13,7 @@
 
 #@no-lib-strip@
 libs\LibStub\LibStub.lua
+libs\BM-utils\addon\version.lua
 libs\BM-utils\addon\utils.lua
 #@end-no-lib-strip@
 

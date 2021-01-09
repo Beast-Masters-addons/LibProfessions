@@ -6,8 +6,7 @@ lib.version = '@project-version@'
 lib.utils = _G['BMUtils']
 
 if _G['LibStub'] then
-    lib.utils = LibStub("BM-utils-1", 4)
-    local major, minor = lib:parse_version(lib.version)
+    local major, minor = _G['BMUtils-Version'].parse_version(lib.version)
     lib = _G['LibStub']:NewLibrary("LibProfessions-"..major, minor)
 end
 
