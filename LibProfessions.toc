@@ -12,6 +12,8 @@
 ## X-Curse-Project-ID: 342783
 
 libs\LibStub\LibStub.lua
+libs\BM-utils\utils.lua
+
 LibProfessions.lua
 ProfessionApi.lua
 CurrentProfession.lua
