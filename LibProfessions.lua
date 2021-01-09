@@ -146,7 +146,11 @@ end
 
 
 --/dump LibStub("LibProfessions-1.0"):GetProfessions()
-function lib:GetProfessions()
+function lib:GetProfessions(include_secondary)
+    if include_secondary == nil then
+        include_secondary = false
+    end
+
     local skills = {}
     if WoWClassic then
         local profession_skills =  self:GetAllSkills("Professions")
