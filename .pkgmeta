@@ -7,9 +7,6 @@ externals:
     url: https://github.com/Beast-Masters-addons/BM-utils.git
     tag: v1.4
 
-required-dependencies:
-  - BM-utils
-
 ignore:
   - tests
 
