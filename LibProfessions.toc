@@ -16,6 +16,6 @@ libs\LibStub\LibStub.lua
 libs\BM-utils\utils.lua
 #@end-no-lib-strip@
 
-LibProfessions.lua
-ProfessionApi.lua
-CurrentProfession.lua
+addon\LibProfessions.lua
+addon\ProfessionApi.lua
+addon\CurrentProfession.lua
