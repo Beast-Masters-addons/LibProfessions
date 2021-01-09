@@ -10,4 +10,4 @@ externals:
 required-dependencies:
   - BM-utils
 
-enable-nolib-creation: no
+enable-nolib-creation: yes

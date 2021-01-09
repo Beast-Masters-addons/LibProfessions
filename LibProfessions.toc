@@ -11,8 +11,10 @@
 ## Notes: Tools to work with profession data
 ## X-Curse-Project-ID: 342783
 
+#@no-lib-strip@
 libs\LibStub\LibStub.lua
 libs\BM-utils\utils.lua
+#@end-no-lib-strip@
 
 LibProfessions.lua
 ProfessionApi.lua
