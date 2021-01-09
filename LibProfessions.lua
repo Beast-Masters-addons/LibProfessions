@@ -1,9 +1,9 @@
 ---A library to get information about the characters professions
 -- luacheck: ignore profession
 _G['LibProfessions'] = {}
-local profession = _G['LibProfessions']
-profession = LibStub:NewLibrary("LibProfessions-1.0", 1)
-if not profession then
+local lib = _G['LibProfessions']
+lib = LibStub:NewLibrary("LibProfessions-1.0", 1)
+if not lib then
     return	-- already loaded and no upgrade necessary
 end
 
@@ -55,11 +55,11 @@ local rank_max = {[75] = "Apprentice",
                   [225] = "Expert",
                   [300] = "Artisan"}
 
-function profession:icon(profession_name)
+function lib:icon(profession_name)
     return icons[profession_name][1]
 end
 
-function profession:profession_id(profession_name, rank)
+function lib:profession_id(profession_name, rank)
     if rank == nil then
        rank = 1
     end
@@ -78,7 +78,7 @@ function profession:profession_id(profession_name, rank)
     end
 end
 
-function profession:profession_name()
+function lib:profession_name()
     --GetSpellInfo
 end
 
@@ -86,7 +86,7 @@ end
 
 
 --/dump LibStub("LibProfessions-1.0"):GetAllSkills()
-function profession:GetAllSkills(header_filter)
+function lib:GetAllSkills(header_filter)
     local skills = {}
     local header_name = ''
     local i = 1
@@ -122,14 +122,14 @@ end
 
 --/dump LibStub("LibProfessions-1.0"):GetSkill("Leatherworking")
 --/dump LibStub("LibProfessions-1.0"):GetSkill("Cooking")
-function profession:GetSkill(profession_name)
+function lib:GetSkill(profession_name)
     local skills = self:GetProfessions()
     return skills[profession_name]
 end
 
 
 --/dump LibStub("LibProfessions-1.0"):GetProfessions()
-function profession:GetProfessions()
+function lib:GetProfessions()
     local skills = {}
     if WoWClassic then
         local profession_skills =  self:GetAllSkills("Professions")
@@ -151,7 +151,7 @@ function profession:GetProfessions()
     return skills
 end
 
-function profession:GetProfessionInfo(index)
+function lib:GetProfessionInfo(index)
     local profs = self:GetProfessions()
     local skillName, header, isExpanded, skillRank, numTempPoints, skillModifier, skillMaxRank, isAbandonable,
     stepCost, rankCost, minLevel, skillCostType, rank_name, header_name = profs[index]
