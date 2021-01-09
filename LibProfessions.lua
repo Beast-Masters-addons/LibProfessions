@@ -2,9 +2,19 @@
 -- luacheck: ignore profession
 _G['LibProfessions'] = {}
 local lib = _G['LibProfessions']
-lib = LibStub:NewLibrary("LibProfessions-1.0", 1)
+lib.version = '@project-version@'
+
+if _G['LibStub'] then
+    local major, minor = string.match('@project-version@', 'v(%d+).(%d+)')
+    major = tonumber(major)
+    minor = tonumber(minor)
+    lib = _G['LibStub']:NewLibrary("LibProfessions-"..major, minor)
+end
+
 if not lib then
+    -- luacov: disable
     return	-- already loaded and no upgrade necessary
+    -- luacov: enable
 end
 
 WoWClassic = select(4, GetBuildInfo()) < 20000
