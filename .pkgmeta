@@ -10,4 +10,7 @@ externals:
 required-dependencies:
   - BM-utils
 
+ignore:
+  - tests
+
 enable-nolib-creation: yes
