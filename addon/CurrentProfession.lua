@@ -1,14 +1,8 @@
 ---A library to get information about the current profession
--- luacheck: ignore profession api
 _G['CurrentProfession'] = {}
+_G['LibProfessionsCurrentProfession-@project-version@'] = _G['CurrentProfession']
 local profession = _G['CurrentProfession']
-profession = LibStub:NewLibrary("LibCurrentProfession-1.1", 1)
-if not profession then
-    return	-- already loaded and no upgrade necessary
-end
-
 local api = _G['ProfessionAPI']
-api = LibStub("LibProfessionAPI-1.0")
 
 function profession:IdFromLink(link)
     local _, _, id = string.find(link, "item:(%d+)");

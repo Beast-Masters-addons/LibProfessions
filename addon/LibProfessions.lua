@@ -1,13 +1,16 @@
 ---A library to get information about the characters professions
--- luacheck: ignore profession
 _G['LibProfessions'] = {}
 local lib = _G['LibProfessions']
 lib.version = '@project-version@'
 lib.utils = _G['BMUtils']
+local utils = _G['BMUtils']
+lib.api = _G['LibProfessionsAPI-@project-version@']
+lib.currentProfession = _G['LibProfessionsCurrentProfession-@project-version@']
 
 if _G['LibStub'] then
     local major, minor = _G['BMUtils-Version'].parse_version(lib.version)
     lib = _G['LibStub']:NewLibrary("LibProfessions-"..major, minor)
+    utils = _G.LibStub("BM-utils-1")
 end
 
 if not lib then
@@ -94,7 +97,7 @@ end
 --/dump profession_id("Leatherworking")
 
 
---/dump LibStub("LibProfessions-1.0"):GetAllSkills()
+--/dump LibStub("LibProfessions-0"):GetAllSkills()
 function lib:GetAllSkills(header_filters)
     if type(header_filters) == 'string' then
         header_filters = {header_filters}
@@ -136,8 +139,8 @@ function lib:GetAllSkills(header_filters)
 end
 
 
---/dump LibStub("LibProfessions-1.0"):GetSkill("Leatherworking")
---/dump LibStub("LibProfessions-1.0"):GetSkill("Cooking")
+--/dump LibStub("LibProfessions-0"):GetSkill("Leatherworking")
+--/dump LibStub("LibProfessions-0"):GetSkill("Cooking")
 function lib:GetSkill(profession_name)
     local skills = self:GetProfessions()
     return skills[profession_name]

@@ -1,11 +1,7 @@
 ---A library to make similar profession API calls for classic and BfA
--- luacheck: ignore api
 _G['ProfessionAPI'] = {}
+_G['LibProfessionsAPI-@project-version@'] = _G['ProfessionAPI']
 local api = _G['ProfessionAPI']
-api = LibStub:NewLibrary("LibProfessionAPI-1.0", 1)
-if not api then
-    return	-- already loaded and no upgrade necessary
-end
 
 -- defined in LibProfessions.lua
 local WoWClassic = _G['WoWClassic']
