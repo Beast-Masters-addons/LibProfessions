@@ -1,11 +1,11 @@
 local lu = require('luaunit')
 
 loadfile('wow_functions.lua')()
-loadfile('../addon/LibProfessions.lua')()
-
+loadfile('load_toc.lua')('../LibProfessions.toc')
 _G['test'] = {}
 local test = _G['test']
 local lib = _G['LibProfessions']
+lib = _G.LibStub("LibProfessions-0")
 
 
 function test:testGetAllSkillsNoFilter()

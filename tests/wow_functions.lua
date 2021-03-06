@@ -1,5 +1,9 @@
 --This file contains dummy functions and variables to make WoW functions work in standalone lua
 
+--Aliases used by LibStub
+_G.debugstack = debug.traceback
+_G.strmatch = string.match
+
 local skillLines = {
    {
       "Class Skills", -- [1]
