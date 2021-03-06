@@ -11,8 +11,11 @@ end
 
 lib.version = '@project-version@'
 lib.api = _G['LibProfessionsAPI-@project-version@']
+assert(lib.api, 'Error loading LibProfessionsAPI')
 lib.currentProfession = _G['LibProfessionsCurrentProfession-@project-version@']
+assert(lib.currentProfession, 'Error loading LibProfessionsCurrentProfession')
 local common = _G['LibProfessionsCommon-@project-version@']
+assert(common, 'Error loading LibProfessionsCommon')
 local WoWClassic = common.is_classic
 
 local icons = {
