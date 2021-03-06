@@ -36,6 +36,6 @@ before_script:
   - cd .release/LibProfessions
 
 script:
-  - luacheck addon --no-color -q -g --no-self --no-unused
+  - luacheck addon --no-color -q --no-self --no-unused
   - cd tests
   - lua -lluacov test_LibProfessions.lua

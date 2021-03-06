@@ -51,23 +51,23 @@ function profession:GetRecipes()
         --@end-debug@
         --In Classic the recipeID indicates the place of the recipe in the list
         for recipeID = 1, api:NumRecipes(), 1 do
-            local skillName, skillType, numAvailable = GetTradeSkillInfo(recipeID);
+            local skillName, skillType, numAvailable = _G.GetTradeSkillInfo(recipeID);
             if skillType == "header" or skillType == nil then -- skip header by increasing recipeID
                 recipeID = recipeID +1
-                skillName, skillType, numAvailable = GetTradeSkillInfo(recipeID);
+                skillName, skillType, numAvailable = _G.GetTradeSkillInfo(recipeID);
             end
 
             recipes[recipeID] = {}
             recipes[recipeID]['name'] = skillName
             recipes[recipeID]['difficulty'] = skillType
             recipes[recipeID]['numAvailable'] = numAvailable
-            recipes[recipeID]['link'] = GetTradeSkillItemLink(recipeID)
+            recipes[recipeID]['link'] = _G.GetTradeSkillItemLink(recipeID)
         end
     else
         --In BfA the recipeID is a real ID
-        for _, recipeID in pairs(C_TradeSkillUI.GetAllRecipeIDs()) do
+        for _, recipeID in pairs(_G.C_TradeSkillUI.GetAllRecipeIDs()) do
             recipes[recipeID] = {}
-            recipes[recipeID] = C_TradeSkillUI.GetRecipeInfo(recipeID)
+            recipes[recipeID] = _G.C_TradeSkillUI.GetRecipeInfo(recipeID)
         end
     end
     return recipes

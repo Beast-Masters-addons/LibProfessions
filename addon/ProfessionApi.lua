@@ -9,7 +9,7 @@ local WoWClassic = common.is_classic
 function api:IsReady()
     if WoWClassic then --Professions are always ready in classic
         return true
-    elseif not C_TradeSkillUI.IsTradeSkillReady() or C_TradeSkillUI.IsDataSourceChanging() then
+    elseif not _G.C_TradeSkillUI.IsTradeSkillReady() or _G.C_TradeSkillUI.IsDataSourceChanging() then
         return false
     else
         return true
@@ -24,10 +24,10 @@ end
 --- @return number Profession ID (Not classic)
 function api:GetInfo()
     if WoWClassic then
-        return GetTradeSkillLine();
+        return _G.GetTradeSkillLine();
     else
         local tradeSkillID, skillLineName, skillLineRank, skillLineMaxRank, skillLineModifier,
-        parentSkillLineID, parentSkillLineName = C_TradeSkillUI.GetTradeSkillLine()
+        parentSkillLineID, parentSkillLineName = _G.C_TradeSkillUI.GetTradeSkillLine()
         return parentSkillLineName or skillLineName, skillLineRank, skillLineMaxRank, skillLineModifier,
         parentSkillLineID or tradeSkillID
     end
@@ -44,7 +44,7 @@ end
 --- @return number Number of recipes
 function api:NumRecipes()
 	--TODO: Not working in BfA
-    return GetNumTradeSkills()
+    return _G.GetNumTradeSkills()
 end
 
 --- Get the number of reagents for a recipe
@@ -52,9 +52,9 @@ end
 --- @return number Number of reagents
 function api:NumReagents(recipeID)
     if WoWClassic then
-        return GetTradeSkillNumReagents(recipeID)
+        return _G.GetTradeSkillNumReagents(recipeID)
     else
-        return C_TradeSkillUI.GetRecipeNumReagents(recipeID)
+        return _G.C_TradeSkillUI.GetRecipeNumReagents(recipeID)
     end
 end
 
@@ -64,9 +64,9 @@ end
 --- @param reagentIndex number Reagent index
 function api:GetReagentItemLink(recipeID, reagentIndex)
     if WoWClassic then
-        return GetTradeSkillReagentItemLink(recipeID, reagentIndex);
+        return _G.GetTradeSkillReagentItemLink(recipeID, reagentIndex);
     else
-        return C_TradeSkillUI.GetRecipeReagentItemLink(recipeID, reagentIndex);
+        return _G.C_TradeSkillUI.GetRecipeReagentItemLink(recipeID, reagentIndex);
     end
 end
 
@@ -76,8 +76,8 @@ end
 --- @param reagentIndex number Reagent index
 function api:GetReagentInfo(recipeID, reagentIndex)
     if WoWClassic then
-        return GetTradeSkillReagentInfo(recipeID, reagentIndex);
+        return _G.GetTradeSkillReagentInfo(recipeID, reagentIndex);
     else
-        return C_TradeSkillUI.GetRecipeReagentInfo(recipeID, reagentIndex)
+        return _G.C_TradeSkillUI.GetRecipeReagentInfo(recipeID, reagentIndex)
     end
 end

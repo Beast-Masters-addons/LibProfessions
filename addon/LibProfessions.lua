@@ -21,8 +21,6 @@ if not lib then
     -- luacov: enable
 end
 
-WoWClassic = select(4, GetBuildInfo()) < 20000
-
 --/dump LibStub("LibProfessions-1.0"):profession_id("Leatherworking")
 --local addonName, professions = ...
 
@@ -83,7 +81,7 @@ function lib:profession_id(profession_name, rank)
     else
         spellID = professions_bfa[profession_name][rank]
     end
-    local spellExists = C_Spell.DoesSpellExist(spellID)
+    local spellExists = _G.C_Spell.DoesSpellExist(spellID)
 
     if spellExists then
         return spellID
@@ -112,10 +110,10 @@ function lib:GetAllSkills(header_filters)
     if not WoWClassic then
         return
     else
-        local numSkills = GetNumSkillLines();
+        local numSkills = _G.GetNumSkillLines();
         for skillIndex=1,  numSkills, 1 do
             local skillName, header, isExpanded, skillRank, numTempPoints, skillModifier, skillMaxRank,
-                  isAbandonable, stepCost, rankCost, minLevel, skillCostType = GetSkillLineInfo(skillIndex);
+                  isAbandonable, stepCost, rankCost, minLevel, skillCostType = _G.GetSkillLineInfo(skillIndex);
             --print(skillName, header, skillRank)
             if ( header ) then
                 header_name = skillName
@@ -165,10 +163,10 @@ function lib:GetProfessions(include_secondary)
             skills[name] = {name = name, skill = skill_info[4], max_skill = skill_info[7], modifier = skill_info[5]}
         end
     else
-        local prof1, prof2, arch, fish, cook = GetProfessions();
+        local prof1, prof2, arch, fish, cook = _G.GetProfessions();
         for _, index in ipairs({prof1, prof2, arch, fish, cook}) do
             local name, texture, rank, maxRank, numSpells, spelloffset, skillLine, rankModifier, specializationIndex,
-            specializationOffset, skillLineName = GetProfessionInfo(index);
+            specializationOffset, skillLineName = _G.GetProfessionInfo(index);
             skills[name] = {name = name, skill = rank, max_skill = maxRank,
                             modifier = rankModifier, specialization = skillLineName}
         end
@@ -182,6 +180,5 @@ function lib:GetProfessionInfo(index)
     stepCost, rankCost, minLevel, skillCostType, rank_name, header_name = profs[index]
     local icon = self:icon(skillName)
     local numAbilities = 0 --TODO: Set this to correct value
-    print('Rank line 139:', skillRank)
     return skillName, icon, skillRank, skillMaxRank, numAbilities, nil, nil, skillModifier, nil, nil, rank_name
 end
