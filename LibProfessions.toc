@@ -17,6 +17,7 @@ libs\BM-utils\addon\version.lua
 libs\BM-utils\addon\utils.lua
 #@end-no-lib-strip@
 
+addon\common.lua
 addon\LibProfessions.lua
 addon\ProfessionApi.lua
 addon\CurrentProfession.lua

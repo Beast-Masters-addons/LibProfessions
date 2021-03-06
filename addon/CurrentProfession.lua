@@ -3,6 +3,8 @@ _G['CurrentProfession'] = {}
 _G['LibProfessionsCurrentProfession-@project-version@'] = _G['CurrentProfession']
 local profession = _G['CurrentProfession']
 local api = _G['ProfessionAPI']
+local common = _G['LibProfessionsCommon-@project-version@']
+local WoWClassic = common.is_classic
 
 function profession:IdFromLink(link)
     local _, _, id = string.find(link, "item:(%d+)");

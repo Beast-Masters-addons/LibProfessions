@@ -6,6 +6,8 @@ lib.utils = _G['BMUtils']
 local utils = _G['BMUtils']
 lib.api = _G['LibProfessionsAPI-@project-version@']
 lib.currentProfession = _G['LibProfessionsCurrentProfession-@project-version@']
+local common = _G['LibProfessionsCommon-@project-version@']
+local WoWClassic = common.is_classic
 
 if _G['LibStub'] then
     local major, minor = _G['BMUtils-Version'].parse_version(lib.version)

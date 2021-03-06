@@ -3,10 +3,8 @@ _G['ProfessionAPI'] = {}
 _G['LibProfessionsAPI-@project-version@'] = _G['ProfessionAPI']
 local api = _G['ProfessionAPI']
 
--- defined in LibProfessions.lua
-local WoWClassic = _G['WoWClassic']
-
---local WoWClassic = select(4, GetBuildInfo()) < 20000
+local common = _G['LibProfessionsCommon-@project-version@']
+local WoWClassic = common.is_classic
 
 function api:IsReady()
     if WoWClassic then --Professions are always ready in classic
