@@ -7,6 +7,11 @@ local test = _G['test']
 local lib = _G['LibProfessions']
 lib = _G.LibStub("LibProfessions-0")
 
+function test:testLibraries()
+    lu.assertNotNil(lib.version)
+    lu.assertNotNil(lib.api)
+    lu.assertNotNil(lib.currentProfession)
+end
 
 function test:testGetAllSkillsNoFilter()
     local skills = lib:GetAllSkills()
