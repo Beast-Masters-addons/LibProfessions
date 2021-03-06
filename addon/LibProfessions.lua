@@ -3,18 +3,17 @@ _G['LibProfessions'] = {}
 local lib = _G['LibProfessions']
 local major, minor = _G['BMUtils-Version'].parse_version('@project-version@')
 lib = _G['LibStub']:NewLibrary("LibProfessions-" .. major, minor)
+if not lib then
+    -- luacov: disable
+    return	-- already loaded and no upgrade necessary
+    -- luacov: enable
+end
 
 lib.version = '@project-version@'
 lib.api = _G['LibProfessionsAPI-@project-version@']
 lib.currentProfession = _G['LibProfessionsCurrentProfession-@project-version@']
 local common = _G['LibProfessionsCommon-@project-version@']
 local WoWClassic = common.is_classic
-
-if not lib then
-    -- luacov: disable
-    return	-- already loaded and no upgrade necessary
-    -- luacov: enable
-end
 
 local icons = {
     ["Blacksmithing"] = {136241, 'trade_blacksmithing'},
