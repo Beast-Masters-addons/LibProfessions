@@ -98,6 +98,7 @@ end
 
 
 --/dump LibStub("LibProfessions-0"):GetAllSkills()
+--/dump LibStub("LibProfessions-0"):GetAllSkills("Secondary Skills")
 function lib:GetAllSkills(header_filters)
     if type(header_filters) == 'string' then
         header_filters = {header_filters}
@@ -142,12 +143,13 @@ end
 --/dump LibStub("LibProfessions-0"):GetSkill("Leatherworking")
 --/dump LibStub("LibProfessions-0"):GetSkill("Cooking")
 function lib:GetSkill(profession_name)
-    local skills = self:GetProfessions()
+    local skills = self:GetProfessions(true)
     return skills[profession_name]
 end
 
 
---/dump LibStub("LibProfessions-1.0"):GetProfessions()
+--/dump LibStub("LibProfessions-0"):GetProfessions()
+--/dump LibStub("LibProfessions-0"):GetProfessions(true)
 function lib:GetProfessions(include_secondary)
     if include_secondary == nil then
         include_secondary = false
@@ -156,7 +158,11 @@ function lib:GetProfessions(include_secondary)
     local skills = {}
     if WoWClassic then
         local profession_skills =  self:GetAllSkills("Professions")
-        --local profession_skills =  self:GetAllSkills("Secondary Skills")
+        if include_secondary then
+            local secondary_skills =  self:GetAllSkills("Secondary Skills")
+            for k,v in pairs(secondary_skills) do profession_skills[k] = v end
+        end
+
         local name
         for _, skill_info in pairs(profession_skills) do
             name = skill_info[1]
