@@ -11,13 +11,13 @@ function _G.GetNumTradeSkills()
 end
 
 function _G.GetTradeSkillInfo(recipeID)
-    if recipeID == 2 then
+    if recipeID == 2 or 3447 then
         return 'Healing Potion', 'optimal', 10
     end
 end
 
 function _G.GetTradeSkillItemLink(recipeID)
-    if recipeID == 2 then
+    if recipeID == 2 or 3447 then
         return '\124cffffffff\124Hitem:929::::::::60:::::\124h[Healing Potion]\124h\124r'
     else
         error('Invalid recipeID ' .. recipeID)
@@ -33,7 +33,7 @@ function _G.GetTradeSkillNumReagents(recipeID)
 end
 
 function _G.GetTradeSkillReagentItemLink(skillId, reagentId)
-    if skillId == 2 then
+    if skillId == 2 or 3447 then
         if reagentId == 1 then
             return '\124cffffffff\124Hitem:2453::::::::60:::::\124h[Bruiseweed]\124h\124r'
         elseif reagentId == 2 then
@@ -47,7 +47,7 @@ function _G.GetTradeSkillReagentItemLink(skillId, reagentId)
 end
 
 function _G.GetTradeSkillReagentInfo(tradeSkillRecipeId, reagentId)
-    if tradeSkillRecipeId == 2 then
+    if tradeSkillRecipeId == 2 or 3447 then
         if reagentId == 1 then
             return 'Bruiseweed', 'inv_misc_herb_01', 1, 20
         elseif reagentId == 2 then
