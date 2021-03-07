@@ -25,7 +25,7 @@ function _G.GetTradeSkillItemLink(recipeID)
 end
 
 function _G.GetTradeSkillNumReagents(recipeID)
-    if recipeID == 2 then
+    if recipeID == 2 or 3447 then
         return 3
     else
         error('Invalid recipeID ' .. recipeID)
