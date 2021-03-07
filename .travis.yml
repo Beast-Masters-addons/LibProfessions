@@ -38,4 +38,5 @@ script:
   - cd tests
   - git clone https://github.com/Beast-Masters-addons/build_utils
   - lua -lluacov test_LibProfessions.lua
+  - lua -lluacov test_ProfessionApi.lua
   - bash <(curl -s https://codecov.io/bash)
