@@ -33,11 +33,9 @@ before_script:
   - cp -r tests .release/LibProfessions
   - cd .release/LibProfessions
 
-  after_script:
-    - python build_xml.py $TRAVIS_BUILD_DIR/.release/LibProfessions/LibProfessions.toc $TRAVIS_BUILD_DIR/.release/LibProfessions/lib.xml $TRAVIS_BUILD_DIR/lib.xml addon
-
 script:
   - luacheck addon --no-color -q --no-self --no-unused
   - cd tests
+  - git clone https://github.com/Beast-Masters-addons/build_utils
   - lua -lluacov test_LibProfessions.lua
   - bash <(curl -s https://codecov.io/bash)
