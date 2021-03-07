@@ -13,7 +13,7 @@ function _G.C_TradeSkillUI.GetTradeSkillLine()
     local skillLineRank = 10
     local skillLineMaxRank = 125
 
-    return skillLineName, skillLineRank, skillLineMaxRank
+    return 171, skillLineName, skillLineRank, skillLineMaxRank
 end
 
 function _G.C_TradeSkillUI.GetRecipeNumReagents(recipeID)

@@ -1,3 +1,11 @@
+function _G.GetTradeSkillLine()
+    local skillLineName = 'Alchemy'
+    local skillLineRank = 10
+    local skillLineMaxRank = 125
+
+    return skillLineName, skillLineRank, skillLineMaxRank
+end
+
 function _G.GetNumTradeSkills()
     return 2
 end

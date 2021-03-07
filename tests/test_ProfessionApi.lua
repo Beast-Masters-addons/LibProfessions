@@ -33,6 +33,16 @@ function test:testIsReady()
     lu.assertTrue(api:IsReady())
 end
 
+function test:testGetInfo()
+    local skillLineName, skillLineRank, skillLineMaxRank = api:GetInfo()
+
+    lu.assertEquals('Alchemy', skillLineName)
+    lu.assertEquals(10, skillLineRank)
+    lu.assertEquals(125, skillLineMaxRank)
+
+    return skillLineName, skillLineRank, skillLineMaxRank
+end
+
 function test:testNumRecipes()
     lu.assertEquals(2, api:NumRecipes())
 end
