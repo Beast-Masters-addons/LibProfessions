@@ -10,6 +10,18 @@ function _G.GetNumTradeSkills()
     return 2
 end
 
+function _G.GetTradeSkillInfo(recipeID)
+    if recipeID == 3447 then
+        return 'Healing Potion', 'optimal', 10
+    end
+end
+
+function _G.GetTradeSkillItemLink(recipeID)
+    if recipeID == 3447 then
+        return '\124cffffffff\124Hitem:929::::::::60:::::\124h[Healing Potion]\124h\124r'
+    end
+end
+
 function _G.GetTradeSkillNumReagents(recipeID)
     if recipeID == 3447 then
         return 3
