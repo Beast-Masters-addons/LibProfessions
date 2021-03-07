@@ -13,6 +13,6 @@ else
 
     --TODO: Test should be skipped, this function does not exist in WoW Retail
     function _G.GetNumTradeSkills()
-        return 2
+        return 1
     end
 end

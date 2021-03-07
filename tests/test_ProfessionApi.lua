@@ -25,7 +25,7 @@ function test:testGetInfo()
 end
 
 function test:testNumRecipes()
-    lu.assertEquals(2, api:NumRecipes())
+    lu.assertEquals(1, api:NumRecipes())
 end
 
 function test:testNumReagents()
