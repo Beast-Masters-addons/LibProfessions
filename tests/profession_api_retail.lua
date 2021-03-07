@@ -53,7 +53,13 @@ end
 
 function _G.C_TradeSkillUI.GetRecipeInfo(recipeID)
     if recipeID == 3447 then
-        return 'Healing Potion'
+        return {
+            ['name'] = 'Healing Potion',
+            ['link'] = '\124cffffffff\124Hitem:929::::::::60:::::\124h[Healing Potion]\124h\124r',
+            ['learned'] = true,
+            ['numAvailable'] = 10,
+            ['difficulty'] = 'optimal'
+        }
     else
         error('Invalid recipeId ' .. recipeID)
     end
