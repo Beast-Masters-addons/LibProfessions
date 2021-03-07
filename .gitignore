@@ -2,3 +2,4 @@ Libs
 .idea
 .release
 release
+luacov.stats.out
