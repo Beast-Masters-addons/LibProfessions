@@ -38,3 +38,15 @@ function _G.C_TradeSkillUI.GetRecipeReagentInfo(tradeSkillRecipeId, reagentId)
         return reagentName, reagentTexture, reagentCount, playerReagentCount
     end
 end
+
+function _G.C_TradeSkillUI.GetAllRecipeIDs()
+    return {3447}
+end
+
+function _G.C_TradeSkillUI.GetRecipeInfo(recipeID)
+    if recipeID == 3447 then
+        return 'Healing Potion'
+    else
+        error('Invalid recipeId '..recipeID)
+    end
+end
