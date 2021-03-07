@@ -2,7 +2,7 @@ local lu = require('luaunit')
 
 loadfile('wow_functions.lua')()
 
-if os.getenv('CLASSIC_VERSION') ~= '' then
+if os.getenv('CLASSIC_VERSION') ~= nil then
     print('Running tests for WoW Classic')
     function _G.GetBuildInfo()
         return "1.13.2", 32600, "Nov 20 2019", 11302
