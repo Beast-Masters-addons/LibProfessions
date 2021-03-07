@@ -7,40 +7,53 @@ function _G.GetTradeSkillLine()
 end
 
 function _G.GetNumTradeSkills()
-    return 2
+    return 1
 end
 
 function _G.GetTradeSkillInfo(recipeID)
-    if recipeID == 3447 then
+    if recipeID == 2 then
         return 'Healing Potion', 'optimal', 10
     end
 end
 
 function _G.GetTradeSkillItemLink(recipeID)
-    if recipeID == 3447 then
+    if recipeID == 2 then
         return '\124cffffffff\124Hitem:929::::::::60:::::\124h[Healing Potion]\124h\124r'
+    else
+        error('Invalid recipeID ' .. recipeID)
     end
 end
 
 function _G.GetTradeSkillNumReagents(recipeID)
-    if recipeID == 3447 then
+    if recipeID == 2 then
         return 3
+    else
+        error('Invalid recipeID ' .. recipeID)
     end
 end
 
 function _G.GetTradeSkillReagentItemLink(skillId, reagentId)
-    if skillId == 3447 and reagentId == 1 then
-        return '\124cffffffff\124Hitem:2453::::::::60:::::\124h[Bruiseweed]\124h\124r'
+    if skillId == 2 then
+        if reagentId == 1 then
+            return '\124cffffffff\124Hitem:2453::::::::60:::::\124h[Bruiseweed]\124h\124r'
+        elseif reagentId == 2 then
+            return '\124cffffffff\124Hitem:2450::::::::60:::::\124h[Briarthorn]\124h\124r'
+        elseif reagentId == 3 then
+            return '\124cffffffff\124Hitem:3372::::::::60:::::\124h[Leaded Vial]\124h\124r;'
+        end
+    else
+        error('Invalid skillId ' .. skillId)
     end
 end
 
 function _G.GetTradeSkillReagentInfo(tradeSkillRecipeId, reagentId)
-    if tradeSkillRecipeId == 3447 and reagentId == 1 then
-        local reagentName = 'Bruiseweed'
-        local reagentTexture = 'inv_misc_herb_01'
-        local reagentCount = 1
-        local playerReagentCount = 20
-
-        return reagentName, reagentTexture, reagentCount, playerReagentCount
+    if tradeSkillRecipeId == 2 then
+        if reagentId == 1 then
+            return 'Bruiseweed', 'inv_misc_herb_01', 1, 20
+        elseif reagentId == 2 then
+            return 'Briarthorn', 'inv_misc_root_01', 1, 16
+        elseif reagentId == 3 then
+            return 'Leaded Vial', 'inv_drink_06', 1, 20
+        end
     end
 end
