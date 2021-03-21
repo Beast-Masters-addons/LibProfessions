@@ -71,7 +71,8 @@ function profession:GetRecipes()
         --In BfA the recipeID is a real ID
         for _, recipeID in pairs(C_TradeSkillUI.GetAllRecipeIDs()) do
             recipes[recipeID] = {}
-            recipes[recipeID] = C_TradeSkillUI.GetRecipeInfo(recipeID)
+            recipes[recipeID] = _G.C_TradeSkillUI.GetRecipeInfo(recipeID)
+            recipes[recipeID]['link'] = _G.C_TradeSkillUI.GetRecipeItemLink(recipeID)
         end
     end
     return recipes
