@@ -36,6 +36,14 @@ function _G.C_TradeSkillUI.GetRecipeReagentItemLink(skillId, reagentId)
     end
 end
 
+function _G.C_TradeSkillUI.GetRecipeItemLink(recipeID)
+    if recipeID == 2 or 3447 then
+        return '\124cffffffff\124Hitem:929::::::::60:::::\124h[Healing Potion]\124h\124r'
+    else
+        error('Invalid recipeID ' .. recipeID)
+    end
+end
+
 function _G.C_TradeSkillUI.GetRecipeReagentInfo(tradeSkillRecipeId, reagentId)
     if tradeSkillRecipeId == 3447 and reagentId == 1 then
         local reagentName = 'Bruiseweed'
