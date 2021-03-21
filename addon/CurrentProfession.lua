@@ -68,6 +68,7 @@ function profession:GetRecipes()
         for _, recipeID in pairs(_G.C_TradeSkillUI.GetAllRecipeIDs()) do
             recipes[recipeID] = {}
             recipes[recipeID] = _G.C_TradeSkillUI.GetRecipeInfo(recipeID)
+            recipes[recipeID]['link'] = _G.C_TradeSkillUI.GetRecipeItemLink(recipeID)
         end
     end
     return recipes
