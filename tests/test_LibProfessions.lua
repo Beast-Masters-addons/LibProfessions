@@ -5,6 +5,10 @@ _G['test'] = {}
 local test = _G['test']
 local lib = _G['LibProfessions']
 lib = _G.LibStub("LibProfessions-0")
+local is_classic = os.getenv('GAME_VERSION') ~= 'retail'
+if not is_classic then
+    os.exit(0)
+end
 
 function test:testLibraries()
     lu.assertNotNil(lib.version)
