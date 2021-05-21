@@ -2,22 +2,17 @@ language: minimal
 
 jobs:
   include:
-    - name: 'Live'
+    - name: 'Retail'
       install:
-        - curl -s https://raw.githubusercontent.com/BigWigsMods/packager/master/release.sh | bash -s -- -d -z
-        - git clone https://github.com/Gethe/wow-ui-source tests/wow-ui-source
-      after_success:
-        - cd $TRAVIS_BUILD_DIR
-        - curl -s https://raw.githubusercontent.com/BigWigsMods/packager/master/release.sh | bash
+        - export GAME_VERSION="retail"
 
     - name: 'Classic'
       install:
-        - export CLASSIC_VERSION="1.13.6"
-        - curl -s https://raw.githubusercontent.com/BigWigsMods/packager/master/release.sh | bash -s -- -d -z -g $CLASSIC_VERSION
-        - git clone https://github.com/Gethe/wow-ui-source tests/wow-ui-source -b classic
-      after_success:
-        - cd $TRAVIS_BUILD_DIR
-        - curl -s https://raw.githubusercontent.com/BigWigsMods/packager/master/release.sh | bash -s -- -g $CLASSIC_VERSION
+        - export GAME_VERSION="classic"
+
+    - name: 'TBC'
+      install:
+        - export GAME_VERSION="bcc"
 
 addons:
   apt:
@@ -29,15 +24,21 @@ before_install:
   - sudo luarocks install luaunit
   - sudo luarocks install luacov
 
-before_script:
-  - cp -r tests .release/LibProfessions
-  - cd .release/LibProfessions
+install:
+  - git clone https://github.com/Beast-Masters-addons/build_utils tests/build_utils
+  - curl -s https://raw.githubusercontent.com/BigWigsMods/packager/master/release.sh | bash -s -- -d -z -g $GAME_VERSION
+  - mv .release/LibProfessions/libs .
 
 script:
   - luacheck addon --no-color -q --no-self --no-unused
   - cd tests
-  - git clone https://github.com/Beast-Masters-addons/build_utils
   - lua -lluacov test_LibProfessions.lua
   - lua -lluacov test_ProfessionApi.lua
   - lua -lluacov test_CurrentProfession.lua
+
+after_script:
   - bash <(curl -s https://codecov.io/bash)
+
+after_success:
+  - cd $TRAVIS_BUILD_DIR
+  - curl -s https://raw.githubusercontent.com/BigWigsMods/packager/master/release.sh | bash -s -- -g $GAME_VERSION
