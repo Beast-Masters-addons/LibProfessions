@@ -5,6 +5,7 @@ _G['test'] = {}
 local test = _G['test']
 
 local api = _G['ProfessionAPI']
+local is_classic = os.getenv('GAME_VERSION') ~= 'retail'
 
 function test:testIsReady()
     lu.assertTrue(api:IsReady())
@@ -21,6 +22,10 @@ function test:testGetInfo()
 end
 
 function test:testNumRecipes()
+    if not is_classic then
+        print('NumRecipes is not implemented for retail')
+        return
+    end
     lu.assertEquals(1, api:NumRecipes())
 end
 
