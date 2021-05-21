@@ -5,7 +5,7 @@ _G['test'] = {}
 local test = _G['test']
 
 local lib = _G['CurrentProfession']
-local is_classic = select(4, _G.GetBuildInfo()) < 20000
+local is_classic = select(4, _G.GetBuildInfo()) < 30000
 
 function test:testGetReagents()
     local reagents = lib:GetReagents(3447)
