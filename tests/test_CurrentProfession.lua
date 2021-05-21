@@ -3,9 +3,12 @@ local test = _G['test']
 
 local lu = require('luaunit')
 
-loadfile('wow_functions.lua')()
-loadfile('version_select.lua')()
-
+loadfile('build_utils/wow_api/functions.lua')()
+if os.getenv('GAME_VERSION') == 'retail' then
+    loadfile('build_utils/wow_api/profession_api_retail.lua')()
+else
+    loadfile('build_utils/wow_api/profession_api_classic.lua')()
+end
 loadfile('build_utils/utils/load_toc.lua')('../LibProfessions.toc')
 
 local lib = _G['CurrentProfession']
