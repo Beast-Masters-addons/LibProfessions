@@ -78,20 +78,28 @@ function test:testGetAllProfessions()
 end
 
 function test:testGetProfessions()
+    local professions = lib:GetProfessions()
+    lu.assertEquals(type(professions), 'table')
     if not lib.is_classic then
-        return --TODO: Add dummy API methods for retail
+        lu.assertNotNil(professions['Leatherworking'])
+    else
+        lu.assertNotNil(professions['Alchemy'])
     end
-    lu.assertEquals(type(lib:GetProfessions()), 'table')
 end
 
 function test:testGetSkill()
-    if not lib.is_classic then
-        return --TODO: Add dummy API methods for retail
+    if  lib.is_classic then
+        local profession = lib:GetSkill('Alchemy')
+        lu.assertEquals(profession['name'], 'Alchemy')
+        lu.assertEquals(profession['skill'], 132)
+        lu.assertEquals(profession['max_skill'], 150)
+    else
+        local profession = lib:GetSkill('Leatherworking')
+        lu.assertEquals(profession['name'], 'Leatherworking')
+        lu.assertEquals(profession['skill'], 65)
+        lu.assertEquals(profession['max_skill'], 100)
     end
-    local profession = lib:GetSkill('Alchemy')
-    lu.assertEquals(profession['name'], 'Alchemy')
-    lu.assertEquals(profession['skill'], 132)
-    lu.assertEquals(profession['max_skill'], 150)
 end
+
 
 os.exit(lu.LuaUnit.run())

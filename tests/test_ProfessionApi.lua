@@ -4,7 +4,9 @@ loadfile('load.lua')()
 _G['test'] = {}
 local test = _G['test']
 
+---@type LibProfessions
 local lib = _G['LibProfessions-@project-version@']
+---@type LibProfessionAPI
 local api = lib.api
 local is_classic = lib.is_classic
 
