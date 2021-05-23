@@ -5,13 +5,9 @@ _G['test'] = {}
 local test = _G['test']
 ---@type LibProfessions
 local lib = _G['LibProfessions-@project-version@']
-local is_classic = lib.is_classic
-if not is_classic then
-    os.exit(0)
-end
 
 _G.C_Spell = {}
-function  _G.C_Spell.DoesSpellExist()
+function _G.C_Spell.DoesSpellExist()
     return true
 end
 
@@ -45,20 +41,25 @@ end
 
 function test:testProfessionId()
     lu.assertEquals(lib:profession_id('Alchemy', 1), 2259)
-    lu.assertEquals(lib:profession_id('Alchemy', 9), nil)
+    if lib.is_classic then
+        lu.assertEquals(lib:profession_id('Alchemy', 9), nil)
+    end
 end
 
 function test:testGetAllSkillsNoFilter()
+    if not lib.is_classic then
+        return
+    end
     local skills = lib:GetAllSkills()
---[[    for key, value in pairs(skills) do
-        print(key, value)
-    end]]
     lu.assertNotNil(skills['Fishing'])
     lu.assertNotNil(skills['Herbalism'])
     lu.assertNotNil(skills['Feral Combat'])
 end
 
 function test:testGetSecondarySkills()
+    if not lib.is_classic then
+        return
+    end
     local skills = lib:GetAllSkills('Secondary Skills')
     lu.assertNotNil(skills['Fishing'])
     lu.assertNil(skills['Herbalism'])
@@ -66,7 +67,10 @@ function test:testGetSecondarySkills()
 end
 
 function test:testGetAllProfessions()
-    local skills = lib:GetAllSkills({'Professions', 'Secondary Skills'})
+    if not lib.is_classic then
+        return
+    end
+    local skills = lib:GetAllSkills({ 'Professions', 'Secondary Skills' })
     lu.assertNotNil(skills['Fishing'])
     lu.assertNotNil(skills['Herbalism'])
     lu.assertNil(skills['Feral Combat'])
