@@ -146,7 +146,7 @@ function lib:GetProfessions(include_secondary)
             local name, texture, rank, maxRank, numSpells, spelloffset, skillLine, rankModifier, specializationIndex,
             specializationOffset, skillLineName = _G.GetProfessionInfo(index);
             skills[name] = {name = name, skill = rank, max_skill = maxRank,
-                            modifier = rankModifier, specialization = skillLineName}
+                            skillLine = skillLine, modifier = rankModifier, specialization = skillLineName}
         end
     end
     return skills
