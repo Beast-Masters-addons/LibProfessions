@@ -10,8 +10,7 @@
 
 #@no-lib-strip@
 libs\LibStub\LibStub.lua
-libs\BM-utils\addon\version.lua
-libs\BM-utils\addon\utils.lua
+libs\BM-utils\lib.xml
 #@end-no-lib-strip@
 
 addon\common.lua
