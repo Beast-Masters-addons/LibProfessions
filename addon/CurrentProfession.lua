@@ -1,15 +1,8 @@
----A library to get information about the current profession
-_G['CurrentProfession'] = {}
-_G['LibProfessionsCurrentProfession-@project-version@'] = _G['CurrentProfession']
-local profession = _G['CurrentProfession']
-local api = _G['ProfessionAPI']
-local common = _G['LibProfessionsCommon-@project-version@']
-local WoWClassic = common.is_classic
-
-function profession:IdFromLink(link)
-    local _, _, id = string.find(link, "item:(%d+)");
-    return tonumber(id);
-end
+---@type LibProfessions
+local addon = _G['LibProfessions-@project-version@']
+---@class LibProfessionsCurrentProfession A library to get information about the current profession
+local profession = addon.currentProfession
+local api = addon.api
 
 --/dump LibStub("LibCurrentProfession-1.0"):ProfessionIs("Cooking")
 function profession:ProfessionIs(profession_name)
@@ -32,7 +25,7 @@ function profession:GetReagents(recipeID)
             local reagentName, reagentTexture, reagentCount, playerReagentCount =
             api:GetReagentInfo(recipeID, reagent_Index);
             if reagentLink then
-                local reagentItemID = self:IdFromLink(reagentLink)
+                local reagentItemID = addon.utils:ItemIdFromLink(reagentLink)
                 reagents[reagent_Index] = {["reagentItemID"]=reagentItemID, ["reagentName"]=reagentName,
                                            ["reagentTexture"]=reagentTexture, ["reagentCount"]=reagentCount,
                                            ["playerReagentCount"]=playerReagentCount, ["reagentLink"]=reagentLink}
@@ -45,7 +38,7 @@ end
 --/dump LibStub("LibCurrentProfession-1.0"):GetRecipes()
 function profession:GetRecipes()
     local recipes = {}
-    if WoWClassic then
+    if addon.is_classic then
         --@debug@
         print(string.format('Found %d recipes for %s', api:NumRecipes(), api:GetInfo()))
         --@end-debug@

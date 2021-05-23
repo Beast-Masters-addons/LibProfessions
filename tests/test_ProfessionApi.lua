@@ -4,8 +4,9 @@ loadfile('load.lua')()
 _G['test'] = {}
 local test = _G['test']
 
-local api = _G['ProfessionAPI']
-local is_classic = os.getenv('GAME_VERSION') ~= 'retail'
+local lib = _G['LibProfessions-@project-version@']
+local api = lib.api
+local is_classic = lib.is_classic
 
 function test:testIsReady()
     lu.assertTrue(api:IsReady())

@@ -1,22 +1,8 @@
----A library to get information about the characters professions
-_G['LibProfessions'] = {}
-local lib = _G['LibProfessions']
-local major, minor = _G['BMUtils-Version'].parse_version('@project-version@')
-lib = _G['LibStub']:NewLibrary("LibProfessions-" .. major, minor)
-if not lib then
-    -- luacov: disable
-    return	-- already loaded and no upgrade necessary
-    -- luacov: enable
-end
+---@class LibProfessions:LibProfessionsCommon A library to get information about the characters professions
+local lib = _G['LibProfessions-@project-version@']
 
-lib.version = '@project-version@'
-lib.api = _G['LibProfessionsAPI-@project-version@']
 assert(lib.api, 'Error loading LibProfessionsAPI')
-lib.currentProfession = _G['LibProfessionsCurrentProfession-@project-version@']
 assert(lib.currentProfession, 'Error loading LibProfessionsCurrentProfession')
-local common = _G['LibProfessionsCommon-@project-version@']
-assert(common, 'Error loading LibProfessionsCommon')
-local WoWClassic = common.is_classic
 
 local icons = {
     ["Blacksmithing"] = {136241, 'trade_blacksmithing'},
@@ -70,7 +56,7 @@ function lib:profession_id(profession_name, rank)
        rank = 1
     end
     local spellID
-    if WoWClassic then
+    if self.is_classic then
         spellID =  professions_classic[profession_name][rank]
     else
         spellID = professions_bfa[profession_name][rank]
@@ -102,7 +88,7 @@ function lib:GetAllSkills(header_filters)
     local header_name = ''
     local i = 1
     -- BfA has no skills, only professions
-    if not WoWClassic then
+    if not self.is_classic then
         return
     else
         local numSkills = _G.GetNumSkillLines();
@@ -150,7 +136,7 @@ function lib:GetProfessions(include_secondary)
     end
 
     local skills = {}
-    if WoWClassic then
+    if self.is_classic then
         local profession_skills =  self:GetAllSkills("Professions")
         if include_secondary then
             local secondary_skills =  self:GetAllSkills("Secondary Skills")

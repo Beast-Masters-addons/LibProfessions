@@ -3,9 +3,8 @@ loadfile('load.lua')()
 
 _G['test'] = {}
 local test = _G['test']
-local lib = _G['LibProfessions']
-lib = _G.LibStub("LibProfessions-0")
-local is_classic = os.getenv('GAME_VERSION') ~= 'retail'
+local lib = _G['LibProfessions-@project-version@']
+local is_classic = lib.is_classic
 if not is_classic then
     os.exit(0)
 end

@@ -4,8 +4,9 @@ loadfile('load.lua')()
 _G['test'] = {}
 local test = _G['test']
 
-local lib = _G['CurrentProfession']
-local is_classic = select(4, _G.GetBuildInfo()) < 30000
+---@type LibProfessions
+local base = _G.LibStub("LibProfessions-0")
+local lib = base.currentProfession
 
 function test:testGetReagents()
     local reagents = lib:GetReagents(3447)
@@ -17,7 +18,7 @@ function test:testGetRecipes()
     lu.assertNotNil(recipes)
     local key
 
-    if is_classic then
+    if base.is_classic then
         key = 1
     else
         key = 3447
