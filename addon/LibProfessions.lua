@@ -48,7 +48,7 @@ local rank_max = {[75] = "Apprentice",
                   [300] = "Artisan"}
 
 function lib:icon(profession_name)
-    return icons[profession_name][1]
+    return icons[profession_name][2]
 end
 
 function lib:profession_id(profession_name, rank)
