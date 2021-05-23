@@ -151,12 +151,3 @@ function lib:GetProfessions(include_secondary)
     end
     return skills
 end
-
-function lib:GetProfessionInfo(index)
-    local profs = self:GetProfessions()
-    local skillName, header, isExpanded, skillRank, numTempPoints, skillModifier, skillMaxRank, isAbandonable,
-    stepCost, rankCost, minLevel, skillCostType, rank_name, header_name = profs[index]
-    local icon = self:icon(skillName)
-    local numAbilities = 0 --TODO: Set this to correct value
-    return skillName, icon, skillRank, skillMaxRank, numAbilities, nil, nil, skillModifier, nil, nil, rank_name
-end
