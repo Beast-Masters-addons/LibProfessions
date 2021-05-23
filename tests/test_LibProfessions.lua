@@ -36,7 +36,8 @@ function test:testLibraries()
 end
 
 function test:testIcon()
-    lu.assertEquals(lib:icon('Blacksmithing'), 'trade_blacksmithing')
+    lu.assertEquals(lib:iconId('Blacksmithing'), 136241)
+    lu.assertEquals(lib:iconFile('Blacksmithing'), 'trade_blacksmithing')
 end
 
 function test:testProfessionId()

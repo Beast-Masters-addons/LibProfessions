@@ -47,7 +47,12 @@ local rank_max = {[75] = "Apprentice",
                   [225] = "Expert",
                   [300] = "Artisan"}
 
-function lib:icon(profession_name)
+
+function lib:iconId(profession_name)
+    return icons[profession_name][1]
+end
+
+function lib:iconFile(profession_name)
     return icons[profession_name][2]
 end
 
