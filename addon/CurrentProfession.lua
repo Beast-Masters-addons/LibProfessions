@@ -13,7 +13,7 @@ end
 
 --/dump LibStub("LibCurrentProfession-1.0"):ProfessionIs("Cooking")
 function profession:ProfessionIs(profession_name)
-    local current_name = api:GetName()
+    local current_name = api:GetInfo()
     if current_name ~= profession_name then
         return false
     else
