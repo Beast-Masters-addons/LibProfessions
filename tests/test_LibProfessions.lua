@@ -3,16 +3,31 @@ loadfile('load.lua')()
 
 _G['test'] = {}
 local test = _G['test']
+---@type LibProfessions
 local lib = _G['LibProfessions-@project-version@']
 local is_classic = lib.is_classic
 if not is_classic then
     os.exit(0)
 end
 
+_G.C_Spell = {}
+function  _G.C_Spell.DoesSpellExist()
+    return true
+end
+
 function test:testLibraries()
     lu.assertNotNil(lib.version)
     lu.assertNotNil(lib.api)
     lu.assertNotNil(lib.currentProfession)
+end
+
+function test:testIcon()
+    lu.assertEquals(lib:icon('Blacksmithing'), 'trade_blacksmithing')
+end
+
+function test:testProfessionId()
+    lu.assertEquals(lib:profession_id('Alchemy', 1), 2259)
+    lu.assertEquals(lib:profession_id('Alchemy', 9), nil)
 end
 
 function test:testGetAllSkillsNoFilter()
