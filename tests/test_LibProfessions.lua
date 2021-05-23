@@ -77,4 +77,18 @@ function test:testGetAllProfessions()
     lu.assertNil(skills['Feral Combat'])
 end
 
+function test:testGetProfessions()
+    lu.assertEquals(type(lib:GetProfessions()), 'table')
+end
+
+function test:testGetSkill()
+    if not lib.is_classic then
+        return --TODO: Add dummy API methods for retail
+    end
+    local profession = lib:GetSkill('Alchemy')
+    lu.assertEquals(profession['name'], 'Alchemy')
+    lu.assertEquals(profession['skill'], 132)
+    lu.assertEquals(profession['max_skill'], 150)
+end
+
 os.exit(lu.LuaUnit.run())
