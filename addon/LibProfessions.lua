@@ -27,21 +27,6 @@ local professions_bfa = {
     ["Fishing"] = 7731,
 }
 
-local professions_classic = {
-    ["Alchemy"] = {2259,3101,3464,11611},
-    ["Blacksmithing"] = {2018,3100,3538,9785},
-    ["Enchanting"] = {},
-    ["Engineering"] = {},
-    ["Leatherworking"] = {2108,3104,3811},
-    ["Tailoring"] = {3908},
-    ["Skinning"] = {8613,8617,8618,10768},
-    ["Mining"] = {2575,2576,3564,10248},
-    ["Herbalism"] = {},
-    ["Smelting"] = {},
-    ["Cooking"] = {2550,3102,3413,18260},
-    ["Fishing"] = {7620,7731,7732,18248},
-}
-
 local rank_max = {[75] = "Apprentice",
                   [150] = "Journeyman",
                   [225] = "Expert",
@@ -58,13 +43,15 @@ end
 
 function lib:profession_id(profession_name, rank)
     if rank == nil then
-       rank = 1
+        rank = 1
     end
     local spellID
-    if self.is_classic then
-        spellID =  professions_classic[profession_name][rank]
+    if self.is_classic_era then
+        spellID = _G['ProfessionRanks-classic'][profession_name][rank]
+    elseif self.is_bcc then
+        spellID = _G['ProfessionRanks-bcc'][profession_name][rank]
     else
-        spellID = professions_bfa[profession_name][rank]
+        spellID = professions_bfa[profession_name]
     end
     local spellExists = _G.C_Spell.DoesSpellExist(spellID)
 
