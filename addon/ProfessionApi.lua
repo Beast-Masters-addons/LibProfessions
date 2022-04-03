@@ -30,7 +30,7 @@ function api:GetInfo()
 end
 
 --/dump LibStub("LibProfessionAPI-1.0"):GetName()
---- @deprecated Use GetInfo
+--- deprecated Use GetInfo
 function api:GetName()
     return self:GetInfo()
 end

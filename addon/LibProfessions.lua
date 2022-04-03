@@ -143,8 +143,8 @@ function lib:GetProfessions(include_secondary)
     else
         local prof1, prof2, arch, fish, cook = _G.GetProfessions();
         for _, index in ipairs({prof1, prof2, arch, fish, cook}) do
-            local name, texture, rank, maxRank, numSpells, spelloffset, skillLine, rankModifier, specializationIndex,
-            specializationOffset, skillLineName = _G.GetProfessionInfo(index);
+            local name, _, rank, maxRank, _, _, skillLine, rankModifier, _,
+            _, skillLineName = _G.GetProfessionInfo(index);
             skills[name] = {name = name, skill = rank, max_skill = maxRank,
                             skillLine = skillLine, modifier = rankModifier, specialization = skillLineName}
         end
