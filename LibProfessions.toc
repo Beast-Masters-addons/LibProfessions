@@ -13,13 +13,8 @@ libs\LibStub\LibStub.lua
 libs\BM-utils\lib.xml
 #@end-no-lib-strip@
 
-#@version-classic@
 data\ProfessionRanks-classic.lua
-#@end-version-classic@
-
-#@version-bcc@
 data\ProfessionRanks-bcc.lua
-#@end-version-bcc@
 
 addon\common.lua
 addon\ProfessionApi.lua
