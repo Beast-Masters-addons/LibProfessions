@@ -55,6 +55,8 @@ function profession:GetRecipes()
             recipes[recipeID]['difficulty'] = skillType
             recipes[recipeID]['numAvailable'] = numAvailable
             recipes[recipeID]['link'] = _G.GetTradeSkillItemLink(recipeID)
+            recipes[recipeID]['recipeLink'] = _G.GetTradeSkillRecipeLink(recipeID)
+            recipes[recipeID]['recipeId'] = tonumber(string.match(recipes[recipeID]['recipeLink'], "enchant:(%d+)"))
         end
     else
         --In BfA the recipeID is a real ID
@@ -62,6 +64,8 @@ function profession:GetRecipes()
             recipes[recipeID] = {}
             recipes[recipeID] = _G.C_TradeSkillUI.GetRecipeInfo(recipeID)
             recipes[recipeID]['link'] = _G.C_TradeSkillUI.GetRecipeItemLink(recipeID)
+            recipes[recipeID]['recipeLink'] = _G.C_TradeSkillUI.GetRecipeItemLink(recipeID)
+            recipes[recipeID]['recipeId'] = tonumber(string.match(recipes[recipeID]['recipeLink'], "enchant:(%d+)"))
         end
     end
     return recipes
