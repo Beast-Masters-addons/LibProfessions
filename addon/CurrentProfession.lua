@@ -1,5 +1,10 @@
 ---@type LibProfessions
 local addon = _G['LibProfessions-@project-version@']
+if not addon then
+    -- luacov: disable
+    return    -- already loaded and no upgrade necessary
+    -- luacov: enable
+end
 ---@class LibProfessionsCurrentProfession A library to get information about the current profession
 local profession = addon.currentProfession
 local api = addon.api

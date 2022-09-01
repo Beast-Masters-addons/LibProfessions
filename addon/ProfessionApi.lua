@@ -1,4 +1,10 @@
 local addon = _G['LibProfessions-@project-version@']
+if not addon then
+    -- luacov: disable
+    return    -- already loaded and no upgrade necessary
+    -- luacov: enable
+end
+
 ---@class LibProfessionAPI A library to make similar profession API calls for classic and BfA
 local api = addon.api
 

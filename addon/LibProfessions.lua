@@ -1,5 +1,10 @@
 ---@class LibProfessions:LibProfessionsCommon A library to get information about the characters professions
 local lib = _G['LibProfessions-@project-version@']
+if not lib then
+    -- luacov: disable
+    return    -- already loaded and no upgrade necessary
+    -- luacov: enable
+end
 
 assert(lib.api, 'Error loading LibProfessionsAPI')
 assert(lib.currentProfession, 'Error loading LibProfessionsCurrentProfession')
