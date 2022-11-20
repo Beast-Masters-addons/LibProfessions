@@ -1,12 +1,14 @@
-## Interface-Retail: 90200
-## Interface-Classic: 11402
+## Interface: 100002
+## Interface-Classic: 11403
 ## Interface-BCC: 20504
+## Interface-Wrath: 30400
 
 ## Title: Lib: Professions
 ## Author: datagutten
 ## Version: @project-version@
 ## Notes: Tools to work with profession data
 ## X-Curse-Project-ID: 342783
+## X-Wago-ID: ZQ6aAj6W
 
 #@no-lib-strip@
 libs\LibStub\LibStub.lua
