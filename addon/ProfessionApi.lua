@@ -49,8 +49,11 @@ end
 --- This is currently working only in WoW classic
 --- @return number Number of recipes
 function api:NumRecipes()
-	--TODO: Not working in BfA
-    return _G.GetNumTradeSkills()
+    if addon.is_classic then
+        return _G.GetNumTradeSkills()
+    else
+        return #_G.C_TradeSkillUI.GetAllRecipeIDs()
+    end
 end
 
 --- Get the number of reagents for a recipe
