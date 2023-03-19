@@ -53,8 +53,8 @@ function lib:profession_id(profession_name, rank)
     local spellID
     if self.is_classic_era then
         spellID = _G['ProfessionRanks-classic'][profession_name][rank]
-    elseif self.is_bcc then
-        spellID = _G['ProfessionRanks-bcc'][profession_name][rank]
+    elseif self.is_wrath then
+        spellID = _G['ProfessionRanks-wrath'][profession_name][rank]
     else
         spellID = professions_bfa[profession_name]
     end

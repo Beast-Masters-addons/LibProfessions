@@ -16,7 +16,7 @@ libs\BM-utils\lib.xml
 #@end-no-lib-strip@
 
 data\ProfessionRanks-classic.lua
-data\ProfessionRanks-bcc.lua
+data\ProfessionRanks-wrath.lua
 
 addon\common.lua
 addon\ProfessionApi.lua

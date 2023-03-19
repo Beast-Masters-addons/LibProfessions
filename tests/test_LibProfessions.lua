@@ -15,15 +15,15 @@ function test:testVersion()
     if os.getenv('GAME_VERSION') == 'retail' then
         lu.assertEquals(lib.is_classic, false)
         lu.assertEquals(lib.is_classic_era, false)
-        lu.assertEquals(lib.is_bcc, false)
-    elseif os.getenv('GAME_VERSION') == 'bcc' then
+        lu.assertEquals(lib.is_wrath, false)
+    elseif os.getenv('GAME_VERSION') == 'wrath' then
         lu.assertEquals(lib.is_classic, true)
         lu.assertEquals(lib.is_classic_era, false)
-        lu.assertEquals(lib.is_bcc, true)
+        lu.assertEquals(lib.is_wrath, true)
     elseif os.getenv('GAME_VERSION') == 'classic' then
         lu.assertEquals(lib.is_classic, true)
         lu.assertEquals(lib.is_classic_era, true)
-        lu.assertEquals(lib.is_bcc, false)
+        lu.assertEquals(lib.is_wrath, false)
     else
         error('Invalid value for GAME_VERSION: ' .. os.getenv('GAME_VERSION'))
     end

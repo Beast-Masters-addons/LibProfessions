@@ -15,7 +15,7 @@ lib.utils = _G.LibStub("BM-utils-1")
 ---@type boolean Is WoW Classic
 lib.is_classic = _G.WOW_PROJECT_ID ~= _G.WOW_PROJECT_MAINLINE
 lib.is_classic_era = _G.WOW_PROJECT_ID == _G.WOW_PROJECT_CLASSIC
-lib.is_bcc = lib.is_classic ~= lib.is_classic_era --This will also be true for Wrath
+lib.is_wrath = lib.is_classic ~= lib.is_classic_era
 
 ---@type LibProfessionsCurrentProfession
 lib.currentProfession = {}
