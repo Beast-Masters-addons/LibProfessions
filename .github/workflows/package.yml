@@ -69,10 +69,6 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        game_version: [ 'classic', 'wrath', 'retail' ]
 
     needs:
       - test
@@ -88,10 +84,8 @@ jobs:
 
       - name: WoW Packager
         uses: BigWigsMods/packager@v2.1.0
-        with:
-          args: -g ${{ matrix.game_version }}
 
       - uses: actions/upload-artifact@v3
         with:
-          name: ${{ matrix.game_version }}
+          name: LibProfessions
           path: .release
