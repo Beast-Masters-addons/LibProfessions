@@ -59,7 +59,8 @@ function profession:GetReagents(recipeID)
                         ["reagentLink"] = reagentLink }
                 end
                 --@debug@
-                print(('Recipe %d need %d %s (item id %d)'):format(recipeID, slot['quantityRequired'], reagentLink, reagent['itemID']))
+                print(('Recipe %d need %d %s (item id %d)'):format(recipeID, slot['quantityRequired'],
+                        reagentLink, reagent['itemID']))
                 --@end-debug@
             end
         end
