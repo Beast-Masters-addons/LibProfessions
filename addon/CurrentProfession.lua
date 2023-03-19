@@ -23,17 +23,44 @@ end
 --/dump LibStub("LibCurrentProfession-1.0"):GetReagents(160962)
 function profession:GetReagents(recipeID)
     local reagents = {}
-    local numReagents = api:NumReagents(recipeID);
-    if numReagents > 0 then
-        for reagent_Index = 1, numReagents, 1 do
-            local reagentLink = api:GetReagentItemLink(recipeID, reagent_Index);
-            local reagentName, reagentTexture, reagentCount, playerReagentCount =
-            api:GetReagentInfo(recipeID, reagent_Index);
-            if reagentLink then
-                local reagentItemID = addon.utils:ItemIdFromLink(reagentLink)
-                reagents[reagent_Index] = {["reagentItemID"]=reagentItemID, ["reagentName"]=reagentName,
-                                           ["reagentTexture"]=reagentTexture, ["reagentCount"]=reagentCount,
-                                           ["playerReagentCount"]=playerReagentCount, ["reagentLink"]=reagentLink}
+    if addon.is_classic then
+        local numReagents = api:NumReagents(recipeID);
+        if numReagents > 0 then
+            for reagent_Index = 1, numReagents, 1 do
+                local reagentLink = api:GetReagentItemLink(recipeID, reagent_Index);
+                local reagentName, reagentTexture, reagentCount, playerReagentCount =
+                api:GetReagentInfo(recipeID, reagent_Index);
+                if reagentLink then
+                    local reagentItemID = addon.utils:ItemIdFromLink(reagentLink)
+                    reagents[reagent_Index] = { ["reagentItemID"] = reagentItemID,
+                                                ["reagentName"] = reagentName,
+                                                ["reagentTexture"] = reagentTexture,
+                                                ["reagentCount"] = reagentCount,
+                                                ["playerReagentCount"] = playerReagentCount,
+                                                ["reagentLink"] = reagentLink }
+                end
+            end
+            return reagents
+        end
+    else
+        local schematic = _G.C_TradeSkillUI.GetRecipeSchematic(recipeID, false)
+        for index, slot in ipairs(schematic['reagentSlotSchematics']) do
+            for _, reagent in ipairs(slot['reagents']) do
+                local reagentLink = api:GetReagentItemLink(recipeID, index)
+                if reagentLink then
+                    local reagentName = addon.utils:ItemNameFromLink(reagentLink)
+
+                    reagents[index] = {
+                        ["reagentItemID"] = reagent['itemID'],
+                        ["reagentName"] = reagentName,
+                        --["reagentTexture"]=reagentTexture,
+                        ["reagentCount"] = slot['quantityRequired'],
+                        --["playerReagentCount"]=playerReagentCount,
+                        ["reagentLink"] = reagentLink }
+                end
+                --@debug@
+                print(('Recipe %d need %d %s (item id %d)'):format(recipeID, slot['quantityRequired'], reagentLink, reagent['itemID']))
+                --@end-debug@
             end
         end
         return reagents
