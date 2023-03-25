@@ -49,12 +49,14 @@ end
 
 function test:testGetAllSkillsNoFilter()
     if not lib.is_classic then
-        return
+        lu.assertNil(lib:GetAllSkills())
+    else
+        local skills = lib:GetAllSkills()
+        lu.assertNotNil(skills['Fishing'])
+        lu.assertNotNil(skills['Herbalism'])
+        lu.assertNotNil(skills['Feral Combat'])
+
     end
-    local skills = lib:GetAllSkills()
-    lu.assertNotNil(skills['Fishing'])
-    lu.assertNotNil(skills['Herbalism'])
-    lu.assertNotNil(skills['Feral Combat'])
 end
 
 function test:testGetSecondarySkills()
