@@ -8,6 +8,11 @@ local test = _G['test']
 local base = _G.LibStub("LibProfessions-0")
 local lib = base.currentProfession
 
+function test:testProfessionIs()
+    lu.assertFalse(lib:ProfessionIs('Cooking'))
+    lu.assertTrue(lib:ProfessionIs('Alchemy'))
+end
+
 function test:testGetReagents()
     local reagents = lib:GetReagents(3447) --Healing Potion
     lu.assertNotNil(reagents, 'No reagents found')
