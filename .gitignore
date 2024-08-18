@@ -3,4 +3,3 @@ Libs
 .release
 release
 luacov.*.out
-build_utils
