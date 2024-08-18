@@ -50,8 +50,8 @@ function profession:GetReagents(recipeID)
             for _, reagent in ipairs(slot['reagents']) do
                 local reagentLink = api:GetReagentItemLink(recipeID, index)
                 if reagentLink then
-                    local itemID = utils.ItemIdFromLink(reagentLink)
-                    local reagentName = utils.ItemNameFromLink(reagentLink)
+                    local itemID = utils.itemIdFromLink(reagentLink)
+                    local reagentName = utils.itemNameFromLink(reagentLink)
 
                     reagents[index] = {
                         ["reagentItemID"] = itemID,
