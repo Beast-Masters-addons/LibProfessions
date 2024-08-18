@@ -10,8 +10,7 @@ _G['LibProfessions-@project-version@'] = lib
 
 lib.name = ...
 lib.version = '@project-version@'
----@type BMUtils
-lib.utils = _G.LibStub("BM-utils-1")
+
 ---@type boolean Is WoW Classic
 lib.is_classic = _G.WOW_PROJECT_ID ~= _G.WOW_PROJECT_MAINLINE
 lib.is_classic_era = _G.WOW_PROJECT_ID == _G.WOW_PROJECT_CLASSIC

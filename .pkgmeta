@@ -5,7 +5,7 @@ externals:
     tag: latest
   libs/BM-utils:
     url: https://github.com/Beast-Masters-addons/BM-utils.git
-    tag: latest
+    branch: ace_addon
 
 ignore:
   - tests

@@ -8,6 +8,8 @@ end
 ---@class LibProfessionsCurrentProfession A library to get information about the current profession
 local profession = addon.currentProfession
 local api = addon.api
+---@type BMUtils
+local utils = _G.LibStub('BM-utils-2'):GetModule('BMUtils')
 
 --/dump LibStub("LibCurrentProfession-1.0"):ProfessionIs("Cooking")
 function profession:ProfessionIs(profession_name)
@@ -31,7 +33,7 @@ function profession:GetReagents(recipeID)
                 local reagentName, reagentTexture, reagentCount, playerReagentCount =
                 api:GetReagentInfo(recipeID, reagent_Index);
                 if reagentLink then
-                    local reagentItemID = addon.utils:ItemIdFromLink(reagentLink)
+                    local reagentItemID = utils.ItemIdFromLink(reagentLink)
                     reagents[reagent_Index] = { ["reagentItemID"] = reagentItemID,
                                                 ["reagentName"] = reagentName,
                                                 ["reagentTexture"] = reagentTexture,
@@ -48,8 +50,8 @@ function profession:GetReagents(recipeID)
             for _, reagent in ipairs(slot['reagents']) do
                 local reagentLink = api:GetReagentItemLink(recipeID, index)
                 if reagentLink then
-                    local itemID = addon.utils:ItemIdFromLink(reagentLink)
-                    local reagentName = addon.utils:ItemNameFromLink(reagentLink)
+                    local itemID = utils.ItemIdFromLink(reagentLink)
+                    local reagentName = utils.ItemNameFromLink(reagentLink)
 
                     reagents[index] = {
                         ["reagentItemID"] = itemID,
