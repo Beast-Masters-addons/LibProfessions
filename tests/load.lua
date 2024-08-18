@@ -1,5 +1,7 @@
 loadfile('build_utils/wow_api/constants.lua')()
 loadfile('build_utils/wow_api/functions.lua')()
+loadfile('build_utils/wow_api/frame.lua')()
+
 if os.getenv('GAME_VERSION') == 'retail' then
     loadfile('build_utils/wow_api/profession_api_retail.lua')()
 else
