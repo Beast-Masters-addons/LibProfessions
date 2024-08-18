@@ -42,7 +42,7 @@ jobs:
         run: luacheck addon --no-self
 
       - name: Build the addon
-        uses: BigWigsMods/packager@v2.1.0
+        uses: BigWigsMods/packager@v2.3.1
         with:
           args: -g ${{ matrix.game_version }} -z -d
 
@@ -61,7 +61,9 @@ jobs:
           GAME_VERSION: ${{ matrix.game_version }}
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
 
   build:
     runs-on: ubuntu-latest
@@ -76,12 +78,12 @@ jobs:
       WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: WoW Packager
-        uses: BigWigsMods/packager@v2.1.0
+        uses: BigWigsMods/packager@v2.3.1
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: LibProfessions
           path: .release
