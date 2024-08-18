@@ -33,7 +33,7 @@ function profession:GetReagents(recipeID)
                 local reagentName, reagentTexture, reagentCount, playerReagentCount =
                 api:GetReagentInfo(recipeID, reagent_Index);
                 if reagentLink then
-                    local reagentItemID = utils.ItemIdFromLink(reagentLink)
+                    local reagentItemID = utils.itemIdFromLink(reagentLink)
                     reagents[reagent_Index] = { ["reagentItemID"] = reagentItemID,
                                                 ["reagentName"] = reagentName,
                                                 ["reagentTexture"] = reagentTexture,
