@@ -8,6 +8,10 @@ end
 
 assert(lib.api, 'Error loading LibProfessionsAPI')
 assert(lib.currentProfession, 'Error loading LibProfessionsCurrentProfession')
+---@type BMUtils
+local utils = _G.LibStub('BM-utils-2'):GetModule("BMUtils")
+local game_name = utils.getGameShortName()
+local profession_info = _G["ProfessionInfo-" .. game_name]
 
 local icons = {
     ["Blacksmithing"] = {136241, 'trade_blacksmithing'},
@@ -51,10 +55,8 @@ function lib:profession_id(profession_name, rank)
         rank = 1
     end
     local spellID
-    if self.is_classic_era then
-        spellID = _G['ProfessionRanks-classic'][profession_name][rank]
-    elseif self.is_wrath then
-        spellID = _G['ProfessionRanks-wrath'][profession_name][rank]
+    if self.is_classic then
+        spellID = _G['ProfessionRanks-' .. game_name][profession_name][rank]
     else
         spellID = professions_bfa[profession_name]
     end
