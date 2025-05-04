@@ -84,7 +84,8 @@ end
 ---@param skillLineID number skillLineID
 ---@return string Profession name in english
 function lib.getSkillLineName(skillLineID)
-    assert(_G['ProfessionInfo-' .. game_name]["professions"][skillLineID], ('No data for skillLineID %d'):format(skillLineID))
+    assert(_G['ProfessionInfo-' .. game_name]["professions"][skillLineID],
+            ('No data for skillLineID %d'):format(skillLineID))
     return _G['ProfessionInfo-' .. game_name]["professions"][skillLineID]["name"]
 end
 
