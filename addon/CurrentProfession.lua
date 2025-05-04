@@ -92,7 +92,11 @@ function profession:GetRecipes()
             recipes[recipeID]['numAvailable'] = numAvailable
             recipes[recipeID]['link'] = _G.GetTradeSkillItemLink(recipeID)
             recipes[recipeID]['recipeLink'] = _G.GetTradeSkillRecipeLink(recipeID)
-            recipes[recipeID]['recipeId'] = tonumber(string.match(recipes[recipeID]['recipeLink'], "enchant:(%d+)"))
+            if recipes[recipeID]['recipeLink'] then
+                recipes[recipeID]['recipeId'] = tonumber(string.match(recipes[recipeID]['recipeLink'], "enchant:(%d+)"))
+            else
+                recipes[recipeID]['recipeId'] = nil
+            end
         end
     else
         --In BfA the recipeID is a real ID
