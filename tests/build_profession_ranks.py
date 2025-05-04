@@ -4,7 +4,7 @@ from build_utils import WoWTables
 
 data_folder = os.path.realpath(os.path.join(os.path.dirname(__file__), '..', 'data'))
 textures = None
-for version in ['classic', 'wrath', 'retail']:
+for version in ['classic', 'wrath', 'cata', 'mists', 'retail']:
     print('Build %s' % version)
     tables = WoWTables(data_folder=data_folder, game=version)
     if not textures:
