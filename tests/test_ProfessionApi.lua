@@ -24,7 +24,11 @@ function test:testGetInfo()
 end
 
 function test:testNumRecipes()
-    lu.assertEquals(api:NumRecipes(), 2)
+    if lib.is_classic then
+        lu.assertEquals(api:NumRecipes(), 2)
+    else
+        lu.assertEquals(api:NumRecipes(), 1)
+    end
 end
 
 function test:testNumReagents()
