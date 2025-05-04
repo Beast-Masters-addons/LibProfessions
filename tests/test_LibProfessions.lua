@@ -85,5 +85,13 @@ function test:testGetSkill()
     end
 end
 
+function test:testGetSkillLineId()
+    lu.assertEquals(lib.getSkillLineID("Herbalism"), 182)
+end
+
+function test:testGetSkillLineName()
+    lu.assertEquals(lib.getSkillLineName(182), "Herbalism")
+end
+
 
 os.exit(lu.LuaUnit.run())
