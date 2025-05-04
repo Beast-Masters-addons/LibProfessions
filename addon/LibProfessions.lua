@@ -11,7 +11,7 @@ assert(lib.currentProfession, 'Error loading LibProfessionsCurrentProfession')
 ---@type BMUtils
 local utils = _G.LibStub('BM-utils-2'):GetModule("BMUtils")
 local game_name = utils.getGameShortName()
-local profession_info = _G["ProfessionInfo-" .. game_name]
+--local profession_info = _G["ProfessionInfo-" .. game_name]
 
 local icons = {
     ["Blacksmithing"] = {136241, 'trade_blacksmithing'},
