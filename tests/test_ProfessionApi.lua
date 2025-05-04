@@ -8,7 +8,6 @@ local test = _G['test']
 local lib = _G['LibProfessions-@project-version@']
 ---@type LibProfessionAPI
 local api = lib.api
-local is_classic = lib.is_classic
 
 function test:testIsReady()
     lu.assertTrue(api:IsReady())
@@ -25,7 +24,7 @@ function test:testGetInfo()
 end
 
 function test:testNumRecipes()
-    lu.assertEquals(1, api:NumRecipes())
+    lu.assertEquals(api:NumRecipes(), 2)
 end
 
 function test:testNumReagents()
