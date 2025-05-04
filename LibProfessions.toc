@@ -15,7 +15,17 @@ libs\AceAddon-3.0\AceAddon-3.0.xml
 libs\BM-utils\lib.xml
 #@end-no-lib-strip@
 
+data\ProfessionInfo-bcc.lua
+data\ProfessionInfo-cata.lua
+data\ProfessionInfo-classic.lua
+data\ProfessionInfo-mists.lua
+data\ProfessionInfo-retail.lua
+data\ProfessionInfo-wrath.lua
+data\ProfessionRanks-bcc.lua
+data\ProfessionRanks-cata.lua
 data\ProfessionRanks-classic.lua
+data\ProfessionRanks-mists.lua
+data\ProfessionRanks-retail.lua
 data\ProfessionRanks-wrath.lua
 
 addon\common.lua
