@@ -9,7 +9,7 @@ end
 local profession = addon.currentProfession
 local api = addon.api
 ---@type BMUtils
-local utils = _G.LibStub('BM-utils-2'):GetModule('BMUtils')
+local utils = _G.LibStub('BMUtils')
 
 --/dump LibStub("LibCurrentProfession-1.0"):ProfessionIs("Cooking")
 function profession:ProfessionIs(profession_name)

@@ -9,7 +9,7 @@ end
 assert(lib.api, 'Error loading LibProfessionsAPI')
 assert(lib.currentProfession, 'Error loading LibProfessionsCurrentProfession')
 ---@type BMUtils
-local utils = _G.LibStub('BM-utils-2'):GetModule("BMUtils")
+local utils = _G.LibStub('BMUtils')
 local game_name = utils.getGameShortName()
 --local profession_info = _G["ProfessionInfo-" .. game_name]
 
