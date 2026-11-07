@@ -12,7 +12,7 @@ lib.name = ...
 lib.version = '@project-version@'
 
 ---@type boolean Is WoW Classic
-lib.is_classic = _G.WOW_PROJECT_ID ~= _G.WOW_PROJECT_MAINLINE
+lib.is_classic = _G.WOW_PROJECT_ID ~= _G.WOW_PROJECT_MAINLINE and _G.WOW_PROJECT_ID ~= _G.WOW_PROJECT_CAMELOT
 
 ---@type LibProfessionsCurrentProfession
 lib.currentProfession = {}
