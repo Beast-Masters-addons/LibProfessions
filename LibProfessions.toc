@@ -4,6 +4,17 @@
 ## Author: datagutten
 ## Version: @project-version@
 ## Notes: Tools to work with profession data
+## Category: Libraries
+## Category-deDE: Bibliotheken
+## Category-esES: Bibliotecas
+## Category-esMX: Bibliotecas
+## Category-frFR: Bibliothèques
+## Category-itIT: Librerie
+## Category-koKR: 라이브러리
+## Category-ptBR: Bibliotecas
+## Category-ruRU: Библиотеки
+## Category-zhCN: 函数库
+## Category-zhTW: 函式庫
 ## X-Curse-Project-ID: 342783
 ## X-Wago-ID: ZQ6aAj6W
 
